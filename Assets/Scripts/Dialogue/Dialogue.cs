@@ -44,6 +44,8 @@ public class Dialogue
     // Runtime dictionary for efficient lookups
     [System.NonSerialized]
     public Dictionary<int, DialogueSentence> sentenceMap;
+
+    public Sprite customerImage;
     
     // Initialize the map from the array (call this after loading)
     public void InitializeMap()
