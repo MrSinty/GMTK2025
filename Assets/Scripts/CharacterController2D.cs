@@ -1,5 +1,4 @@
 using System;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Vector2 = UnityEngine.Vector2;
@@ -7,7 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
+    Rigidbody2D rb;
     [SerializeField] float speed = 2f;
     [SerializeField] float idleThreshold = 0.1f;
     Vector2 motionVector = Vector2.zero;
@@ -20,7 +19,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         playerInput = new PlayerInputActions();
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
@@ -53,7 +52,7 @@ public class CharacterController2D : MonoBehaviour
     private void FixedUpdate()
     {
         //move
-        rigidbody.velocity = motionVector.normalized * speed;
+        rb.velocity = motionVector.normalized * speed;
     }
 
  
