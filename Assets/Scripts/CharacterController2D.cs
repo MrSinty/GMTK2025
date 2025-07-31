@@ -1,4 +1,8 @@
+using System;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController2D : MonoBehaviour
@@ -6,24 +10,41 @@ public class CharacterController2D : MonoBehaviour
     Rigidbody2D rigidbody;
     [SerializeField] float speed = 2f;
     [SerializeField] float idleThreshold = 0.1f;
-    Vector2 motionVector;
+    Vector2 motionVector = Vector2.zero;
     Animator animator;
     bool isMoving = false;
+    public PlayerInputActions playerInput;
+    private InputAction move;
+    private InputAction interact;
 
     private void Awake()
     {
+        playerInput = new PlayerInputActions();
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        move = playerInput.Player.Move;
+        move.Enable();
+
+        interact = playerInput.Player.Interact;
+        interact.Enable();
+    }
+
+    private void OnDisable()
+    {
+        move.Disable();
+        interact.Disable();
+    }
+
     private void Update()
     {
-        motionVector = new Vector2(
-            Input.GetAxisRaw("Horizontal"), 
-            Input.GetAxisRaw("Vertical")
-            );
-        animator.SetFloat("horizontal", Input.GetAxisRaw("Horizontal"));
-        animator.SetFloat("vertical", Input.GetAxisRaw("Vertical"));
+        motionVector = move.ReadValue<Vector2>();
+
+        animator.SetFloat("horizontal", motionVector.x);
+        animator.SetFloat("vertical", motionVector.y);
 
         isMoving = (motionVector.magnitude > idleThreshold);
         animator.SetBool("IsMoving", isMoving);
@@ -31,11 +52,9 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
-    }
-
-    private void Move()
-    {
+        //move
         rigidbody.velocity = motionVector.normalized * speed;
     }
+
+ 
 }
