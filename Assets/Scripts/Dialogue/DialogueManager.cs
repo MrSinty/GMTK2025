@@ -12,13 +12,25 @@ public class DialogueManager : MonoBehaviour
     public Button optionButtonPrefab;
     public Button continueButton;
 
+    public Image playerImageUI;
+    public Image customerImageUI;
+
+    public Animator playerAnimator;
+    public Animator customerAnimator;
+    public Animator dialogueAnimator;
+
     private Dialogue currentDialogue;
     private DialogueSentence currentSentence;
 
     public void StartDialogue(Dialogue dialogue)
     {
+        dialogueAnimator.SetBool("IsOpen", true);
+        customerAnimator.SetBool("IsOpen", true);
+        playerAnimator.SetBool("IsOpen", true);
+
         Debug.Log("Starting conversation with " + dialogue.name);
         nameText.text = dialogue.name;
+        customerImageUI.overrideSprite = dialogue.customerImage;
         currentDialogue = dialogue;
         
         // Initialize the sentence map for efficient lookups
@@ -48,6 +60,10 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = currentSentence.sentence;
 
+        // Customer is speaking
+        HighlightSpeaker(false);
+        nameText.text = currentDialogue.name;
+
         continueButton.gameObject.SetActive(true);
         continueButton.onClick.RemoveAllListeners();
         continueButton.onClick.AddListener(OnContinueButtonClicked);
@@ -57,8 +73,14 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.gameObject.SetActive(false);
 
+        dialogueText.text = "";
+
         if (currentSentence.options != null && currentSentence.options.Length > 0)
         {
+            // Player is speaking (options available)
+            HighlightSpeaker(true);
+            nameText.text = "You";
+
             optionsPanel.SetActive(true);
             foreach (var option in currentSentence.options)
             {
@@ -107,6 +129,8 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        dialogueText.text = "";
+
         if (option.customer != null)
         {
             var reciever = option.customer as IDialogueOptionReciever;
@@ -141,8 +165,39 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    void HighlightSpeaker(bool isPlayerSpeaking)
+    {
+        if (isPlayerSpeaking)
+        {
+            // Player is speaking
+            playerImageUI.color = Color.white; // Normal
+            playerImageUI.rectTransform.localScale = Vector3.one * 1.1f; // Slightly larger
+
+            customerImageUI.color = new Color(0.5f, 0.5f, 0.5f, 1f); // Darkened
+            customerImageUI.rectTransform.localScale = Vector3.one; // Normal size
+        }
+        else
+        {
+            // Customer is speaking
+            customerImageUI.color = Color.white;
+            customerImageUI.rectTransform.localScale = Vector3.one * 1.1f;
+
+            playerImageUI.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            playerImageUI.rectTransform.localScale = Vector3.one;
+        }
+    }
+
     public void EndDialogue()
     {
+        playerImageUI.color = Color.white;
+        playerImageUI.rectTransform.localScale = Vector3.one;
+        customerImageUI.color = Color.white;
+        customerImageUI.rectTransform.localScale = Vector3.one;
+
         Debug.Log("End of conversation");
+        dialogueAnimator.SetBool("IsOpen", false);
+        customerAnimator.SetBool("IsOpen", false);
+        playerAnimator.SetBool("IsOpen", false);
     }
+
 }
