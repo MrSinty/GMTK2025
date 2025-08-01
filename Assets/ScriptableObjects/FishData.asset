@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4213cc854e1ab4ba972cfd6e75df2b, type: 3}
   m_Name: FishData
   m_EditorClassIdentifier: 
+  productID: 20
   productName: Fish
-  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  productID: 1
+  category: 1
+  rawIcon: {fileID: 1469671107, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
+  cookedIcon: {fileID: 0}
+  cookedAndSlicedIcon: {fileID: -630870690, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}

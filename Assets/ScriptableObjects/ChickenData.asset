@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4213cc854e1ab4ba972cfd6e75df2b, type: 3}
   m_Name: ChickenData
   m_EditorClassIdentifier: 
-  productID: 2
-  productName: Cheese
+  productID: 10
+  productName: Chicken
   category: 1
-  rawIcon: {fileID: 0}
+  rawIcon: {fileID: 816664781, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   cookedIcon: {fileID: 0}
-  cookedAndSlicedIcon: {fileID: 0}
+  cookedAndSlicedIcon: {fileID: -309441795, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}

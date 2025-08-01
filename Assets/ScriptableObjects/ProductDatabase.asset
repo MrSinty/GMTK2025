@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: ProductDatabase
   m_EditorClassIdentifier: 
   allProducts:
-  - {fileID: 11400000, guid: ee1eae51a18093b4d946d4b00bcfddf2, type: 2}
+  - {fileID: 11400000, guid: 1ba06352dd253634a88f2ad4aea97eb0, type: 2}
+  - {fileID: 11400000, guid: 92fb6b711dfba0f4e89b10a07955c551, type: 2}
   - {fileID: 11400000, guid: 67045d35a9d07404daba0540db7d0c18, type: 2}
+  - {fileID: 11400000, guid: 52cdd27b31368d54a95e726d98e911dc, type: 2}
+  - {fileID: 11400000, guid: ee1eae51a18093b4d946d4b00bcfddf2, type: 2}
+  - {fileID: 11400000, guid: eb4e2f5f4303e00408af5211fc0a9cea, type: 2}
+  - {fileID: 11400000, guid: 23b5bb1a636c8fc4e8abcb876a206194, type: 2}
+  - {fileID: 11400000, guid: 13b792e5b90687f43a0b4a03480b5561, type: 2}
+  - {fileID: 11400000, guid: d82002ef4e5f9714283175afd205eca5, type: 2}
