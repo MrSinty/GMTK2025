@@ -1,0 +1,145 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5e6fedc2472449cead18ef23b5cb30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Library:
+  - m_Name: Walk
+    m_Hash: 765711723
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: pink ghost_back_stop
+      m_Hash: 344878991
+      m_Sprite: {fileID: -1936709589, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1936709589, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_back_walk_1
+      m_Hash: 1030080006
+      m_Sprite: {fileID: 177702143, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 177702143, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_back_walk_2
+      m_Hash: 611096508
+      m_Sprite: {fileID: -8233045, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -8233045, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_back_walk_3
+      m_Hash: 325822250
+      m_Sprite: {fileID: 654481432, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 654481432, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_back_walk_4
+      m_Hash: 219099785
+      m_Sprite: {fileID: 1277541388, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1277541388, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_forward_stop
+      m_Hash: 156208686
+      m_Sprite: {fileID: 2083656983, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2083656983, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_forward_walk_1
+      m_Hash: 494142593
+      m_Sprite: {fileID: -1119777192, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1119777192, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_forward_walk_2
+      m_Hash: 75322683
+      m_Sprite: {fileID: -193488561, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -193488561, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_forward_walk_3
+      m_Hash: 863659437
+      m_Sprite: {fileID: -312340394, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -312340394, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_forward_walk_4
+      m_Hash: 757002254
+      m_Sprite: {fileID: -1831077958, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1831077958, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_left_stop
+      m_Hash: 951985422
+      m_Sprite: {fileID: 945460218, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 945460218, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_left_walk_1
+      m_Hash: 166996914
+      m_Sprite: {fileID: 843723112, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 843723112, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_left_walk_2
+      m_Hash: 285047304
+      m_Sprite: {fileID: -1785072192, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1785072192, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_left_walk_3
+      m_Hash: 670714526
+      m_Sprite: {fileID: -1726916104, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1726916104, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_left_walk_4
+      m_Hash: 966713149
+      m_Sprite: {fileID: -1611073571, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1611073571, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_right_stop
+      m_Hash: 1067775166
+      m_Sprite: {fileID: 465486887, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 465486887, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_right_walk_1
+      m_Hash: 484810834
+      m_Sprite: {fileID: 1321033740, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1321033740, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_right_walk_2
+      m_Hash: 99414504
+      m_Sprite: {fileID: -1947679972, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1947679972, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_right_walk_3
+      m_Hash: 854311294
+      m_Sprite: {fileID: 773754779, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 773754779, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_right_walk_4
+      m_Hash: 747590877
+      m_Sprite: {fileID: -590070851, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -590070851, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 20
+  - m_Name: Sit
+    m_Hash: 854338608
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: pink ghost_idle_1
+      m_Hash: 611829213
+      m_Sprite: {fileID: -88134085, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -88134085, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_idle_2
+      m_Hash: 1031705703
+      m_Sprite: {fileID: -327681876, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -327681876, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    - m_Name: pink ghost_idle_3
+      m_Hash: 175744241
+      m_Sprite: {fileID: -1060817469, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1060817469, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 3
+  m_PrimaryLibraryGUID: 
+  m_ModificationHash: 638896952587111537
+  m_Version: 1

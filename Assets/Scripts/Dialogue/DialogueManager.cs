@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     public GameObject optionsPanel;
@@ -18,6 +26,9 @@ public class DialogueManager : MonoBehaviour
     public Animator playerAnimator;
     public Animator customerAnimator;
     public Animator dialogueAnimator;
+
+    [Header("Events")]
+    public UnityEvent onDialogueEnded; // Event triggered when any dialogue ends
 
     private Dialogue currentDialogue;
     private DialogueSentence currentSentence;
@@ -32,7 +43,7 @@ public class DialogueManager : MonoBehaviour
         nameText.text = dialogue.name;
         customerImageUI.overrideSprite = dialogue.customerImage;
         currentDialogue = dialogue;
-        
+
         // Initialize the sentence map for efficient lookups
         dialogue.InitializeMap();
         
@@ -64,6 +75,7 @@ public class DialogueManager : MonoBehaviour
         HighlightSpeaker(false);
         nameText.text = currentDialogue.name;
 
+        Debug.Log("Displaying current sentence: " + currentSentence.sentence);
         continueButton.gameObject.SetActive(true);
         continueButton.onClick.RemoveAllListeners();
         continueButton.onClick.AddListener(OnContinueButtonClicked);
@@ -71,6 +83,7 @@ public class DialogueManager : MonoBehaviour
 
     void OnContinueButtonClicked()
     {
+        Debug.Log("OnContinueButtonClicked");
         continueButton.gameObject.SetActive(false);
 
         dialogueText.text = "";
@@ -105,7 +118,6 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            // No options and no next sentence, end the dialogue
             EndDialogue();
         }
     }
@@ -198,6 +210,7 @@ public class DialogueManager : MonoBehaviour
         dialogueAnimator.SetBool("IsOpen", false);
         customerAnimator.SetBool("IsOpen", false);
         playerAnimator.SetBool("IsOpen", false);
+        onDialogueEnded.Invoke(); // Trigger the event
     }
 
 }

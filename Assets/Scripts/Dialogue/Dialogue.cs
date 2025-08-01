@@ -5,11 +5,8 @@ using UnityEngine;
 public enum DialogueOptionEffect
 {
     None,
-    EndDialogue,
     GiveAHint,
-    RejectFood,
-    AcceptFood,
-    GiveFamilyRecipe
+    EndDialogue
 }
 
 [System.Serializable]
@@ -21,7 +18,6 @@ public class DialogueOption
     public Customer customer;
 
     public int nextSentenceId;
-    // You can add more fields here, like a reference to another Dialogue, or an event
 }
 
 [System.Serializable]
