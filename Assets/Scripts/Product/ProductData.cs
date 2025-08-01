@@ -5,5 +5,5 @@ public class ProductData : ScriptableObject
 {
     public string productName;
     public Sprite icon;
-    public string productID;
+    public int productID;
 }
