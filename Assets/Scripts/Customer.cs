@@ -81,6 +81,15 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         {
             transform.position = waypoints[0].position;
         }
+
+        if (progressBarObject != null)
+        {
+            progressBarObject.SetActive(false);
+        }
+        if (progressBarOutline != null)
+        {
+            progressBarOutline.SetActive(false);
+        }
     }
     
     void Update()
@@ -150,12 +159,15 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     
     private void UpdateProgressBar()
     {
-        if (progressBarObject != null && progressBarOutline != null)
+        if (progressBarObject != null)
         {
             progressBarObject.SetActive(true);
+        }
+        if (progressBarOutline != null)
+        {
             progressBarOutline.SetActive(true);
         }
-        
+
         if (progressBarFill != null)
         {
             progressBarFill.fillAmount = patienceProgress;
@@ -178,9 +190,12 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     
     private void HideProgressBar()
     {
-        if (progressBarObject != null && progressBarOutline != null)
+        if (progressBarObject != null)
         {
             progressBarObject.SetActive(false);
+        }
+        if (progressBarOutline != null)
+        {
             progressBarOutline.SetActive(false);
         }
         patienceProgress = 0f;
