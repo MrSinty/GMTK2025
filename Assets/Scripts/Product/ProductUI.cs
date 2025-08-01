@@ -11,7 +11,7 @@ public class ProductUI : MonoBehaviour
     public void Setup(ProductData data)
     {
         productData = data;
-        iconImage.sprite = data.icon;
+        iconImage.sprite = data.rawIcon;
         nameText.text = data.productName;
     }
 
