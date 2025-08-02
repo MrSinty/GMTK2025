@@ -1,9 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dish
+public class Dish : MonoBehaviour
 {
+    public SpriteRenderer baseSprite;
+    public SpriteRenderer mainSprite;
+    public SpriteRenderer sauceSprite;
+
     private Dictionary<IngredientCategory, IngredientInstance> ingredients = new();
+
+    private void Start()
+    {
+        var ingreds = GetComponentsInChildren<IngredientInstance>();
+        foreach (var ingred in ingreds)
+        {
+            AddIngredient(ingred);
+        }
+    }
 
     public void AddIngredient(IngredientInstance instance)
     {
@@ -12,8 +25,26 @@ public class Dish
             Debug.Log("Can't add ingredient to dish, already contains this type of ingredient");
             return;
         }
-
+        
         ingredients[instance.data.category] = instance;
+
+        switch (instance.data.category)
+        {
+            case IngredientCategory.Base:
+                baseSprite.sprite = instance.curSprite;
+                break;
+            case IngredientCategory.Main:
+                mainSprite.sprite = instance.curSprite;
+                break;
+            case IngredientCategory.Sauce:
+                sauceSprite.sprite = instance.curSprite;
+                break;
+            default:
+                Debug.Log("No ingredient category was given!");
+                return;
+        }
+
+        instance.HideSprite();
     }
 
     public int GetDishID()
@@ -47,6 +78,8 @@ public class Dish
             return MatchResult.Partial;
         return MatchResult.Bad;
     }
+
+    
 }
 
 public enum MatchResult

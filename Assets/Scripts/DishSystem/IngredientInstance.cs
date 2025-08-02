@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 
-public class IngredientInstance
+public class IngredientInstance : MonoBehaviour
 {
     public ProductData data;
-    public IngredientState state;
+    [SerializeField] private new SpriteRenderer renderer;
 
-    public IngredientInstance(ProductData data)
+    [HideInInspector] public IngredientState state;
+    [HideInInspector] public Sprite curSprite;
+
+    private void Awake()
     {
-        this.data = data;
-        this.state = IngredientState.Raw;
-        if (data.category == IngredientCategory.Sauce)
-            this.state = IngredientState.Cooked;
+        state = IngredientState.Raw;
+        if (data.AlreadyCooked)
+            state = IngredientState.Cooked;
+        curSprite = data.GetSpriteForState(state);
+
+        renderer.sprite = curSprite;
     }
 
     public int GetActualID()
@@ -64,9 +69,20 @@ public class IngredientInstance
 
     public void UpdateVisual()
     {
-        var newSprite = data.GetSpriteForState(state);
+        curSprite = data.GetSpriteForState(state);
 
-        // TODO: Make UI logic to change sprites when ingredient is cooked
-        Debug.Log($"[IngredientInstance] Updated sprite to {newSprite.name} for {data.productName} with state {state}");
+        renderer.sprite = curSprite;
+
+        Debug.Log($"[IngredientInstance] Updated sprite to {curSprite.name} for {data.productName} with state {state}");
+    }
+
+    public void HideSprite()
+    {
+        renderer.sprite = null;
+    }
+
+    public void ReturnSprite()
+    {
+        renderer.sprite = curSprite;
     }
 }

@@ -7,6 +7,7 @@ public class ProductData : ScriptableObject
     public int productID;
     public string productName;
     public IngredientCategory category;
+    public bool AlreadyCooked;
 
     [Header("Sprites for states")]
     public Sprite rawIcon;
