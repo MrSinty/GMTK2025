@@ -11,7 +11,7 @@ public class ProductData : ScriptableObject
     [Header("Sprites for states")]
     public Sprite rawIcon;
     public Sprite cookedIcon;
-    public Sprite cookedAndSlicedIcon;
+    public Sprite slicedIcon;
 
     public Sprite GetSpriteForState(IngredientState state)
     {
@@ -19,7 +19,7 @@ public class ProductData : ScriptableObject
         {
             IngredientState.Raw => rawIcon,
             IngredientState.Cooked => cookedIcon,
-            IngredientState.CookedAndSliced => cookedAndSlicedIcon,
+            IngredientState.Sliced => slicedIcon,
             _ => rawIcon
         };
     }
@@ -37,7 +37,7 @@ public class ProductData : ScriptableObject
                 DrawDefaultInspector();
             else
             {
-                DrawPropertiesExcluding(serializedObject, "cookedAndSlicedIcon");
+                DrawPropertiesExcluding(serializedObject, "slicedIcon");
             }
             serializedObject.ApplyModifiedProperties();
         }
@@ -55,6 +55,6 @@ public enum IngredientCategory
 public enum IngredientState
 {
     Raw,
-    Cooked,
-    CookedAndSliced
+    Sliced,
+    Cooked
 }

@@ -9,6 +9,8 @@ public class IngredientInstance
     {
         this.data = data;
         this.state = IngredientState.Raw;
+        if (data.category == IngredientCategory.Sauce)
+            this.state = IngredientState.Cooked;
     }
 
     public int GetActualID()
@@ -23,15 +25,23 @@ public class IngredientInstance
 
     public bool IsFullyPrepared()
     {
-        if (data.category == IngredientCategory.Main)
-            return state == IngredientState.CookedAndSliced;
-
         return state == IngredientState.Cooked;
     }
 
     public void Cook()
     {
-        if (state == IngredientState.Raw)
+        if (state == IngredientState.Cooked)
+        {
+            Debug.Log("Can't cook this!");
+            return;
+        }
+
+        if (state == IngredientState.Sliced && data.category == IngredientCategory.Main)
+        {
+            state = IngredientState.Cooked;
+            UpdateVisual();
+        }
+        if (data.category == IngredientCategory.Base)
         {
             state = IngredientState.Cooked;
             UpdateVisual();
@@ -40,10 +50,15 @@ public class IngredientInstance
 
     public void Slice()
     {
-        if (data.category == IngredientCategory.Main && state == IngredientState.Cooked)
+        if (data.category == IngredientCategory.Main && state == IngredientState.Raw)
         {
-            state = IngredientState.CookedAndSliced;
+            state = IngredientState.Sliced;
             UpdateVisual();
+        }
+        else
+        {
+            Debug.Log("Can't slice this!");
+            return;
         }
     }
 
