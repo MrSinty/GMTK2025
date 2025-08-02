@@ -32,8 +32,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Ghost_Idle
-  m_Speed: 0.4
+  m_Name: GhostCylinder_Idle
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6863333588308764852}
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7302bf6aad82fa641abbd2c4748c3c1c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 30c0642bfba21524796526c100ea52f6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -83,7 +83,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MainCharacterController
+  m_Name: GhostCylinder Controller
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: vertical
@@ -139,7 +139,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 470, y: 130, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: -6192588829582353231}
 --- !u!206 &3379313139561767584
@@ -151,7 +151,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 1ce18b9f9c59ce7418fae4b854f4d596, type: 2}
+    m_Motion: {fileID: 7400000, guid: 7de29319d5f0aaf458ac6b399941c091, type: 2}
     m_Threshold: 0
     m_Position: {x: 1, y: 0}
     m_TimeScale: 1
@@ -159,7 +159,7 @@ BlendTree:
     m_DirectBlendParameter: vertical
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 2c132d0969f21e44e97e75f64c861c14, type: 2}
+    m_Motion: {fileID: 7400000, guid: 3f999e3fa4601a545967669644826d42, type: 2}
     m_Threshold: 0.33333334
     m_Position: {x: 0, y: 1}
     m_TimeScale: 1
@@ -167,7 +167,7 @@ BlendTree:
     m_DirectBlendParameter: vertical
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 904ea819057ab164b92d665327c36cab, type: 2}
+    m_Motion: {fileID: 7400000, guid: a6986bb0ec68f164fafab6d641ebc990, type: 2}
     m_Threshold: 0.6666667
     m_Position: {x: -1, y: 0}
     m_TimeScale: 1
@@ -175,7 +175,7 @@ BlendTree:
     m_DirectBlendParameter: vertical
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: ea72946e1a7ad0249890970903a21700, type: 2}
+    m_Motion: {fileID: 7400000, guid: ab853f517d88dc849b3711c977e88e4a, type: 2}
     m_Threshold: 1
     m_Position: {x: -0, y: -1}
     m_TimeScale: 1
