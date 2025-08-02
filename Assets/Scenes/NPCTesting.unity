@@ -501,7 +501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3268971812446754995, guid: 51f0989af0b495f4da6dcef110be76b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 599
+      value: 1228
       objectReference: {fileID: 0}
     - target: {fileID: 3816731962839339779, guid: 51f0989af0b495f4da6dcef110be76b6, type: 3}
       propertyPath: m_Camera
@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4282053901784092088, guid: 51f0989af0b495f4da6dcef110be76b6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -713
+      value: -1181
       objectReference: {fileID: 0}
     - target: {fileID: 5383195686925292297, guid: 51f0989af0b495f4da6dcef110be76b6, type: 3}
       propertyPath: m_UiScaleMode
