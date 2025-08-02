@@ -30,7 +30,7 @@ public class InteractionDetector : MonoBehaviour
         {
             _currentInteractable = interactable;
             Debug.Log("Started interaction with " + _currentInteractable);
-            //currentInteractable.onInteractStart();
+            _currentInteractable?.Interact();
         }
     }
 

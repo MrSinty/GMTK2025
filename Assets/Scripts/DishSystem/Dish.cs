@@ -59,7 +59,15 @@ public class Dish : MonoBehaviour
 
     public bool IsFullyReady()
     {
-        return ingredients.Count == 3 && !(GetDishID() >= 1000);
+        bool isReady = ingredients.Count == 3 && !(GetDishID() >= 1000);
+        
+        // Check for recipe unlock when dish is fully ready
+        if (isReady && Cookbook.Instance != null)
+        {
+            Cookbook.Instance.CheckAndUnlockRecipe(this);
+        }
+        
+        return isReady;
     }
 
     public bool MatchesClientOrder(int requestedID)
