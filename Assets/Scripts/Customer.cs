@@ -28,16 +28,18 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     [Header("Order System")]
     public int[] acceptableDishIds; // Array of acceptable dish IDs
     public int perfectDishId; // ID of the perfect dish
+    public int familyDishId; // ID of the family dish
     
     [Header("Dialogues")]
-    public Dialogue initialOrderDialogue; // Dialogue when customer first orders
-    public Dialogue hasOrderedDialogue; // Dialogue when customer has ordered
-    public Dialogue perfectDishDialogue; // Dialogue when perfect dish is given
-    public Dialogue acceptableDishDialogue; // Dialogue when acceptable dish is given
-    public Dialogue unacceptableDishDialogue; // Dialogue when unacceptable dish is given
+    public Dialogue initialOrderDialogue;
+    public Dialogue hasOrderedDialogue;
+    public Dialogue unacceptableDishDialogue;
+    public Dialogue acceptableDishDialogue;
+    public Dialogue perfectDishDialogue;
+    public Dialogue familyDishDialogue;
     
     [Header("Events")]
-    public UnityEvent onFamilyRecipeShared; // Event triggered when family recipe is shared
+    public UnityEvent<int> onFamilyRecipeShared; // Event triggered when family recipe is shared, passes the recipe ID
     public UnityEvent onCustomerSatisfied; // Event triggered when customer is satisfied
     public UnityEvent onCustomerEnraged; // Event triggered when customer is enraged
     
@@ -255,6 +257,15 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
             {
                 // Subscribe to dialogue end event before starting the dialogue
                 DialogueManager.instance.StartDialogue(perfectDishDialogue);
+            }
+        }
+        else if (itemId == familyDishId)
+        {
+            // Family dish - give family recipe
+            currentState = CustomerState.Satisfied;
+            if (familyDishDialogue != null)
+            {
+                DialogueManager.instance.StartDialogue(familyDishDialogue);
             }
         }
         else if (IsAcceptableDish(itemId))
@@ -501,7 +512,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                 // Check if this was a perfect dish
                 if (isPerfectDish)
                 {
-                    onFamilyRecipeShared?.Invoke();
+                    onFamilyRecipeShared?.Invoke(familyDishId);
                 }
                 onCustomerSatisfied?.Invoke();
                 break;
