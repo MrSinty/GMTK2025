@@ -16,6 +16,10 @@ public class CharacterController2D : MonoBehaviour
     private InputAction move;
     private InputAction interact;
 
+    private InputAction pauseAction;
+    public static bool isPaused = false;
+    [SerializeField] GameObject pauseMenuObject;
+
     private void Awake()
     {
         playerInput = new PlayerInputActions();
@@ -30,12 +34,17 @@ public class CharacterController2D : MonoBehaviour
 
         interact = playerInput.Player.Interact;
         interact.Enable();
+
+        pauseAction = playerInput.Player.Pause;
+        pauseAction.performed += OnPaused;
+        pauseAction.Enable();
     }
 
     private void OnDisable()
     {
         move.Disable();
         interact.Disable();
+        pauseAction.Disable();
     }
 
     private void Update()
@@ -55,5 +64,11 @@ public class CharacterController2D : MonoBehaviour
         rb.velocity = motionVector.normalized * speed;
     }
 
- 
+    public void OnPaused(InputAction.CallbackContext context)
+    {
+        isPaused = !isPaused;
+        pauseMenuObject.SetActive(isPaused);
+        
+        Time.timeScale = isPaused ? 0 : 1;
+    }
 }
