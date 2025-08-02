@@ -307,6 +307,11 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         
         // Hide progress bar
         HideProgressBar();
+        if (animator != null)
+        {
+            animator.SetBool("IsSeated", false);
+            animator.SetBool("IsWalking", true);
+        }
         
         // You can add leaving animation or movement here
         StartCoroutine(LeaveCafeCoroutine());
@@ -319,7 +324,6 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         {
             yield return StartCoroutine(LerpToPosition(waypoints[i].position));
         }
-        
         
         // Destroy or deactivate the customer
         gameObject.SetActive(false);
