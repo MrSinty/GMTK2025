@@ -6,9 +6,12 @@ public class CookbookEntryUI : MonoBehaviour
 {
     [Header("UI References")]
     public TextMeshProUGUI recipeNameText;
-    public TextMeshProUGUI recipeQualityText;
+    public TextMeshProUGUI recipeDescriptionText;
     public Image recipeQualityBackgroundImage;
-    public Image recipeImage;
+    public Image dishImage;
+    public Image baseImage;
+    public Image mainImage;
+    public Image sauceImage;
 
     [Header("Quality Background Sprites")]
     public Sprite commonBackgroundSprite;
@@ -35,10 +38,9 @@ public class CookbookEntryUI : MonoBehaviour
             recipeNameText.color = GetQualityColor(recipe.quality);
         }
         
-        if (recipeQualityText != null)
+        if (recipeDescriptionText != null)
         {
-            recipeQualityText.text = recipe.quality.ToString();
-            recipeQualityText.color = GetQualityColor(recipe.quality);
+            recipeDescriptionText.text = recipe.description;
         }
 
         if (recipeQualityBackgroundImage != null)
@@ -47,16 +49,26 @@ public class CookbookEntryUI : MonoBehaviour
             recipeQualityBackgroundImage.color = Color.white; // Reset to white to show sprite properly
         }
         
-        if (recipeImage != null)
+        if (dishImage != null)
         {
             if (recipe.dishSprite != null)
             {
-                recipeImage.sprite = recipe.dishSprite;
-                recipeImage.color = Color.white;
+                dishImage.sprite = recipe.dishSprite;
+                baseImage.sprite = recipe.baseSprite;
+                mainImage.sprite = recipe.mainSprite;
+                sauceImage.sprite = recipe.sauceSprite;
+
+                dishImage.color = Color.white;
+                baseImage.color = Color.white;
+                mainImage.color = Color.white;
+                sauceImage.color = Color.white;
             }
             else
             {
-                recipeImage.color = GetQualityColor(recipe.quality);
+                dishImage.color = GetQualityColor(recipe.quality);
+                baseImage.color = GetQualityColor(recipe.quality);
+                mainImage.color = GetQualityColor(recipe.quality);
+                sauceImage.color = GetQualityColor(recipe.quality);
             }
         }
     }
@@ -67,8 +79,8 @@ public class CookbookEntryUI : MonoBehaviour
         {
             DishQuality.Common => Color.white,
             DishQuality.Great => Color.green,
-            DishQuality.Family => Color.blue,
-            DishQuality.Perfect => Color.yellow,
+            DishQuality.Family => Color.yellow,
+            DishQuality.Perfect => Color.magenta,
             _ => Color.white
         };
     }

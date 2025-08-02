@@ -9,6 +9,10 @@ public class CookbookEntry
     public string description;
     public DishQuality quality;
     public Sprite dishSprite;
+    public Sprite baseSprite;
+    public Sprite mainSprite;
+    public Sprite sauceSprite;
+
     public bool isUnlocked;
 
     public CookbookEntry(int dishID, string dishName, string description, DishQuality quality)

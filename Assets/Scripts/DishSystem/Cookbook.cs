@@ -13,7 +13,7 @@ public class Cookbook : MonoBehaviour, IInteractable
     [Header("Interaction")]
     public string interactionPrompt = "Open Cookbook";
 
-    public bool IsInteractable { get; set; } = false; // Start as false, will be set to true when seated
+    public bool IsInteractable { get; set; } = true; // Start as false, will be set to true when seated
     
     private static Cookbook instance;
     public static Cookbook Instance
@@ -58,18 +58,25 @@ public class Cookbook : MonoBehaviour, IInteractable
         // Perfect dishes (masterpiece combinations)
         allRecipes.Add(new CookbookEntry(690, "Master Chef's Rice", "A masterpiece of culinary art", DishQuality.Perfect));
         allRecipes.Add(new CookbookEntry(790, "Legendary Fish Feast", "A legendary dish that will be remembered", DishQuality.Perfect));
+
+        allRecipes[0].isUnlocked = true;
+        allRecipes[1].isUnlocked = true;
+        allRecipes[2].isUnlocked = true;
+        allRecipes[3].isUnlocked = true;
+        allRecipes[4].isUnlocked = true;
     }
 
     public void CheckAndUnlockRecipe(Dish dish)
     {
-        if (!dish.IsFullyReady()) return;
-
         int dishID = dish.GetDishID();
         
         foreach (var recipe in allRecipes)
         {
             if (recipe.dishID == dishID && !recipe.isUnlocked)
             {
+                recipe.baseSprite = dish.baseSprite.sprite;
+                recipe.mainSprite = dish.mainSprite.sprite;
+                recipe.sauceSprite = dish.sauceSprite.sprite;
                 recipe.Unlock();
                 Debug.Log($"New recipe unlocked: {recipe.dishName} ({recipe.quality})!");
                 
