@@ -1,8 +1,8 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CookbookEntry
+[CreateAssetMenu(menuName = "Ingredients/Recipe")]
+public class CookbookEntry : ScriptableObject
 {
     public int dishID;
     public string dishName;

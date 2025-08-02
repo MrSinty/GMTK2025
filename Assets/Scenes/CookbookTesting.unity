@@ -275,6 +275,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cookbook
       objectReference: {fileID: 0}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: c1315705533e3ba46bb22818f293e57a, type: 2}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: e654079f688e8e6469881cca74b28ddd, type: 2}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bf376d868899714a964fc83e22f5ceb, type: 2}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: c01beeadb3ccdb74dbf13a428f2986e2, type: 2}
+    - target: {fileID: 1429036508242096654, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
+      propertyPath: allRecipes.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: c6bffaead3212394c9d9846bd6cbb042, type: 2}
     - target: {fileID: 1951488360362513676, guid: 885caebe164dec84da117ce363cfd60d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.86
