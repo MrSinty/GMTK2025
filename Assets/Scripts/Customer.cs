@@ -31,6 +31,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     
     [Header("Dialogues")]
     public Dialogue initialOrderDialogue; // Dialogue when customer first orders
+    public Dialogue hasOrderedDialogue; // Dialogue when customer has ordered
     public Dialogue perfectDishDialogue; // Dialogue when perfect dish is given
     public Dialogue acceptableDishDialogue; // Dialogue when acceptable dish is given
     public Dialogue unacceptableDishDialogue; // Dialogue when unacceptable dish is given
@@ -223,9 +224,9 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         {
             if (playerHeldItem == 0)
             {
-                if (initialOrderDialogue != null)
+                if (hasOrderedDialogue != null)
                 {
-                    DialogueManager.instance.StartDialogue(initialOrderDialogue);
+                    DialogueManager.instance.StartDialogue(hasOrderedDialogue);
                 }
             }
             else
@@ -244,6 +245,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     // Validate the item and show appropriate dialogue
     private void ValidateAndRespondToItem(int itemId)
     {
+        DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
         if (itemId == perfectDishId)
         {
             // Perfect dish - give family recipe
@@ -252,7 +254,6 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
             if (perfectDishDialogue != null)
             {
                 // Subscribe to dialogue end event before starting the dialogue
-                DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
                 DialogueManager.instance.StartDialogue(perfectDishDialogue);
             }
         }
@@ -263,7 +264,6 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
             if (acceptableDishDialogue != null)
             {
                 // Subscribe to dialogue end event before starting the dialogue
-                DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
                 DialogueManager.instance.StartDialogue(acceptableDishDialogue);
             }
         }
@@ -274,7 +274,6 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
             if (unacceptableDishDialogue != null)
             {
                 // Subscribe to dialogue end event before starting the dialogue
-                DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
                 DialogueManager.instance.StartDialogue(unacceptableDishDialogue);
             }
         }
@@ -309,17 +308,6 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         // Hide progress bar
         HideProgressBar();
         
-        // Trigger appropriate event
-        switch (exitState)
-        {
-            case CustomerState.Satisfied:
-                onCustomerSatisfied?.Invoke();
-                break;
-            case CustomerState.Enraged:
-                onCustomerEnraged?.Invoke();
-                break;
-        }
-        
         // You can add leaving animation or movement here
         StartCoroutine(LeaveCafeCoroutine());
     }
@@ -331,6 +319,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         {
             yield return StartCoroutine(LerpToPosition(waypoints[i].position));
         }
+        
         
         // Destroy or deactivate the customer
         gameObject.SetActive(false);

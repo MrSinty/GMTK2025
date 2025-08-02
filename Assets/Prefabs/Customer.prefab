@@ -516,6 +516,7 @@ GameObject:
   - component: {fileID: 8725488701243048386}
   - component: {fileID: 8606200160145729442}
   - component: {fileID: 8358666244374685125}
+  - component: {fileID: 702234972079118528}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -644,7 +645,7 @@ MonoBehaviour:
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: Hey, chef! I'd like a pasta, please
+      sentence: "\u041B\u0414\u041E\u0416\u0414\u041B\u041E\u0416\u041E"
       options:
       - optionText: Hint
         effect: 1
@@ -652,7 +653,7 @@ MonoBehaviour:
         nextSentenceId: 3
       - optionText: Sure
         effect: 0
-        customer: {fileID: 8725488701243048386}
+        customer: {fileID: 0}
         nextSentenceId: 4
       nextSentenceId: 1
     - id: 3
@@ -665,6 +666,19 @@ MonoBehaviour:
       options: []
       nextSentenceId: -1
     customerImage: {fileID: 945460218, guid: f78ecc31b2266b041977dba0c654552d, type: 3}
+  hasOrderedDialogue:
+    name: Customer
+    startSentenceId: 0
+    sentences:
+    - id: 0
+      sentence: Is it done?
+      options: []
+      nextSentenceId: 1
+    - id: 1
+      sentence: Well, go on then.
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: -1024042798, guid: 0e681074509bd1b4ba83fb9cc6b9ab9c, type: 3}
   perfectDishDialogue:
     name: 
     startSentenceId: 0
@@ -687,6 +701,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onCustomerEnraged:
+    m_PersistentCalls:
+      m_Calls: []
+  onCustomerLeft:
     m_PersistentCalls:
       m_Calls: []
   progressBarObject: {fileID: 1819701976557496929}
@@ -724,6 +741,41 @@ MonoBehaviour:
   m_labelHash: 1.5195391e-21
   m_SpriteKey: 0
   m_SpriteHash: 808411826
+--- !u!58 &702234972079118528
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8193453920132756326}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &8679500764640898692
 GameObject:
   m_ObjectHideFlags: 0
