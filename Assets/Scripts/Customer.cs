@@ -19,7 +19,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     public bool hasEnteredCafe = false;
     
     [Header("Customer State")]
-    private float timeSinceOrder = 0f;
+    protected float timeSinceOrder = 0f;
     public float patienceTime = 30f; // Time before customer gets impatient
     public float approachPatienceTime = 15f; // Time before customer leaves if not approached
     public float annoyedPatienceTime = 20f; // Time before customer leaves if asked for a hint
@@ -28,7 +28,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     [Header("Order System")]
     public int[] acceptableDishIds; // Array of acceptable dish IDs
     public int perfectDishId; // ID of the perfect dish
-    public int familyDishId; // ID of the family dish
+    public int familyDishId; // ID of the family dish (hidden for Critic)
     
     [Header("Dialogues")]
     public Dialogue initialOrderDialogue;
@@ -36,7 +36,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     public Dialogue unacceptableDishDialogue;
     public Dialogue acceptableDishDialogue;
     public Dialogue perfectDishDialogue;
-    public Dialogue familyDishDialogue;
+    public Dialogue familyDishDialogue; // Family dish dialogue (hidden for Critic)
     
     [Header("Events")]
     public UnityEvent<int> onFamilyRecipeShared; // Event triggered when family recipe is shared, passes the recipe ID
@@ -64,10 +64,10 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     public CustomerState currentState = CustomerState.Walking;
     public bool IsInteractable { get; set; } = false; // Start as false, will be set to true when seated
     
-    private int currentWaypointIndex = 0;
-    private Vector3 targetPosition;
-    private float approachTimer = 0f;
-    private bool isPerfectDish = false; // Track if the current dialogue is for a perfect dish
+    protected int currentWaypointIndex = 0;
+    protected Vector3 targetPosition;
+    protected float approachTimer = 0f;
+    protected bool isPerfectDish = false; // Track if the current dialogue is for a perfect dish
     
     // Animation components (optional)
     private Animator animator;
@@ -111,7 +111,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private void HandleSeatedBehavior()
+    protected void HandleSeatedBehavior()
     {
         switch (currentState)
         {
@@ -160,7 +160,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private void UpdateProgressBar()
+    protected void UpdateProgressBar()
     {
         if (progressBarObject != null)
         {
@@ -191,7 +191,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private void HideProgressBar()
+    protected void HideProgressBar()
     {
         if (progressBarObject != null)
         {
@@ -239,13 +239,13 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private int GetPlayerHeldItem()
+    protected virtual int GetPlayerHeldItem()
     {
         return 0;
     }
     
     // Validate the item and show appropriate dialogue
-    private void ValidateAndRespondToItem(int itemId)
+    protected virtual void ValidateAndRespondToItem(int itemId)
     {
         DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
         if (itemId == perfectDishId)
@@ -290,13 +290,13 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
 
-    private void HandleAnnoyed()
+    protected void HandleAnnoyed()
     {
         patienceTime = annoyedPatienceTime;
     }
     
     // Check if a dish ID is in the acceptable dishes array
-    private bool IsAcceptableDish(int dishId)
+    protected bool IsAcceptableDish(int dishId)
     {
         if (acceptableDishIds == null) return false;
         
@@ -311,7 +311,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     }
     
     // Customer leaves the cafe
-    private void LeaveCafe(CustomerState exitState)
+    protected void LeaveCafe(CustomerState exitState)
     {
         currentState = exitState;
         Debug.Log($"Customer leaving cafe in state: {exitState}");
@@ -328,7 +328,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         StartCoroutine(LeaveCafeCoroutine());
     }
     
-    private IEnumerator LeaveCafeCoroutine()
+    protected IEnumerator LeaveCafeCoroutine()
     {
         // Walk back through waypoints in reverse
         for (int i = waypoints.Length - 1; i >= 0; i--)
@@ -340,7 +340,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         gameObject.SetActive(false);
     }
     
-    private IEnumerator EnterCafe()
+    protected IEnumerator EnterCafe()
     {
         hasEnteredCafe = true;
         isWalking = true;
@@ -374,7 +374,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private void HandleMovement()
+    protected void HandleMovement()
     {
         if (currentWaypointIndex < waypoints.Length)
         {
@@ -396,7 +396,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
     
-    private IEnumerator LerpToPosition(Vector3 targetPos)
+    protected IEnumerator LerpToPosition(Vector3 targetPos)
     {
         Vector3 startPos = transform.position;
         float journeyLength = Vector3.Distance(startPos, targetPos);
@@ -488,7 +488,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
     }
 
-    private void OnInitialOrderDialogueEnded()
+    protected void OnInitialOrderDialogueEnded()
     {
         // Unsubscribe from the event
         DialogueManager.instance.onDialogueEnded.RemoveListener(OnInitialOrderDialogueEnded);
@@ -500,7 +500,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         UpdateProgressBar();
     }
     
-    private void OnDialogueEnded()
+    protected virtual void OnDialogueEnded()
     {
         // Unsubscribe from the event
         DialogueManager.instance.onDialogueEnded.RemoveListener(OnDialogueEnded);
@@ -512,12 +512,16 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                 // Check if this was a perfect dish
                 if (isPerfectDish)
                 {
-                    onFamilyRecipeShared?.Invoke(familyDishId);
+                    onFamilyRecipeShared?.Invoke(perfectDishId);
                 }
                 onCustomerSatisfied?.Invoke();
+                LeaveCafe(CustomerState.Enraged);
                 break;
             case CustomerState.Enraged:
                 onCustomerEnraged?.Invoke();
+                LeaveCafe(CustomerState.Enraged);
+                break;
+            default:
                 break;
         }
         
