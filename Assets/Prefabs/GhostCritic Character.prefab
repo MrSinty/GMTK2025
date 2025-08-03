@@ -600,7 +600,7 @@ Animator:
   m_GameObject: {fileID: 8193453920132756326}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ff6ac2c518b28494abee18ee1e17e0bf, type: 2}
+  m_Controller: {fileID: 9100000, guid: fc2ec90fd0803cd4e8711b044d9c4998, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -658,9 +658,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72b589620682f74dbe66788534ca521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {fileID: 3275562522313530481}
+  - {fileID: 3862028488906581075}
   lerpSpeed: 3
-  seatPosition: {fileID: 0}
+  seatPosition: {fileID: 7478274663169461817}
   isSeated: 0
   isWalking: 0
   hasEnteredCafe: 0
@@ -672,30 +674,87 @@ MonoBehaviour:
   perfectDishId: 0
   familyDishId: 0
   initialOrderDialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Are you ready to become more than just a cook today? No? Pity.Another
+        morning, another attempt. Same mistake. Will you try again?
+      options: []
+      nextSentenceId: 1
+    - id: 0
+      sentence: "You hear the ticking, don\u2019t you? Not from outside - from within.
+        Time is slipping, and you still don\u2019t know what feeds eternity."
+      options: []
+      nextSentenceId: 0
+    - id: 2
+      sentence: "You want easy answers? Not here, not with me. A real cook doesn\u2019t
+        follow instructions - they write them."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   hasOrderedDialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options: []
+      nextSentenceId: 1
+    - id: 1
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   unacceptableDishDialogue:
     name: 
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options:
+      - optionText: Yes
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 1
+      - optionText: No
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 2
+      nextSentenceId: 0
+    - id: 1
+      sentence: You wanted to remind me what disappointment tastes like? You succeeded.
+        A dish without soul, just like your attempt.
+      options: []
+      nextSentenceId: -1
+    - id: 2
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   acceptableDishDialogue:
     name: 
     startSentenceId: 0
     sentences: []
     customerImage: {fileID: 0}
   perfectDishDialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options: []
+      nextSentenceId: 1
+    - id: 1
+      sentence: "...Incredible. How did you... know? It was like a memory, but purer.
+        If this world had a taste - it would be this. I\u2019ll remember you, cook."
+      options: []
+      nextSentenceId: -1
+    - id: 2
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   familyDishDialogue:
     name: 
     startSentenceId: 0
@@ -715,24 +774,89 @@ MonoBehaviour:
   progressBarFill: {fileID: 7985202284442674528}
   patienceProgress: 0
   currentState: 0
-  familyDishId1: 0
-  familyDishId2: 0
-  familyDishId3: 0
+  familyDishId1: 233
+  familyDishId2: 322
+  familyDishId3: 113
   familyDish1Dialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options:
+      - optionText: Yes
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 1
+      - optionText: No
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 2
+      nextSentenceId: 0
+    - id: 1
+      sentence: "Rice... the only worthy part here. The rest \u2014 watery and lacking
+        character. Mushrooms? Questionable. Cream? A mask for weak flavor. Disappointed."
+      options: []
+      nextSentenceId: -1
+    - id: 2
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   familyDish2Dialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options:
+      - optionText: Yes
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 1
+      - optionText: No
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 2
+      nextSentenceId: 0
+    - id: 1
+      sentence: "Soy sauce hints at reason in this chaos. But greens and mushrooms?
+        You\u2019re feeding goats, not minds. The sauce saves the flavor, not your
+        honor."
+      options: []
+      nextSentenceId: -1
+    - id: 2
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   familyDish3Dialogue:
-    name: 
+    name: Name
     startSentenceId: 0
-    sentences: []
-    customerImage: {fileID: 0}
+    sentences:
+    - id: 0
+      sentence: Have you finished your creation... or merely started the path?
+      options:
+      - optionText: Yes
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 1
+      - optionText: Yes
+        effect: 0
+        customer: {fileID: 0}
+        nextSentenceId: 2
+      nextSentenceId: 0
+    - id: 1
+      sentence: "Chicken is the only spark of logic here. The rest is culinary apathy.
+        Noodles - limp strings of mediocrity, cream \u2014 an attempt to hide emptiness.
+        This is compromise, not taste."
+      options: []
+      nextSentenceId: -1
+    - id: 2
+      sentence: "Then don\u2019t stand here. Great dishes aren\u2019t born in conversation."
+      options: []
+      nextSentenceId: -1
+    customerImage: {fileID: 765119535, guid: e484ff1afea132249a00619f8184bad3, type: 3}
   onCriticServed:
     m_PersistentCalls:
       m_Calls: []
