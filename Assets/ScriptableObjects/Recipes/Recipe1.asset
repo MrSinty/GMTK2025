@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9c3218b1b766441acd82eaee85fe20, type: 3}
   m_Name: Recipe1
   m_EditorClassIdentifier: 
-  dishID: 321
+  dishID: 111
   dishName: Penis bolshoi
   description: AAAsdpokfdsjfas'kojas
   quality: 3

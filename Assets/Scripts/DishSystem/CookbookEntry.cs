@@ -15,13 +15,30 @@ public class CookbookEntry : ScriptableObject
 
     public bool isUnlocked;
 
-    public CookbookEntry(int dishID, string dishName, string description, DishQuality quality)
+    public CookbookEntry(int dishID, string dishName, string description, DishQuality quality, Sprite baseSprite, Sprite mainSprite, Sprite sauceSprite)
     {
         this.dishID = dishID;
         this.dishName = dishName;
         this.description = description;
         this.quality = quality;
         this.isUnlocked = false;
+        this.baseSprite = baseSprite;
+        this.mainSprite = mainSprite;
+        this.sauceSprite = sauceSprite;
+    }
+
+    public CookbookEntry SetupEntry(int dishID, string dishName, string description, DishQuality quality, Sprite baseSprite, Sprite mainSprite, Sprite sauceSprite)
+    {
+        this.dishID = dishID;
+        this.dishName = dishName;
+        this.description = description;
+        this.quality = quality;
+        this.isUnlocked = false;
+        this.baseSprite = baseSprite;
+        this.mainSprite = mainSprite;
+        this.sauceSprite = sauceSprite;
+
+        return this;
     }
 
     public void Unlock()

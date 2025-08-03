@@ -15,7 +15,7 @@ MonoBehaviour:
   dishID: 111
   dishName: ggggggg
   description: AAAsdpokfdsjfas'kojas
-  quality: 3
+  quality: 2
   dishSprite: {fileID: 1111982159, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   baseSprite: {fileID: 733333071, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   mainSprite: {fileID: 1074670977, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}

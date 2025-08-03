@@ -6,6 +6,7 @@ public class Dish : MonoBehaviour
     public SpriteRenderer baseSprite;
     public SpriteRenderer mainSprite;
     public SpriteRenderer sauceSprite;
+    public string dishName;
 
     private Dictionary<IngredientCategory, IngredientInstance> ingredients = new();
 
@@ -64,6 +65,7 @@ public class Dish : MonoBehaviour
         // Check for recipe unlock when dish is fully ready
         if (isReady && Cookbook.Instance != null)
         {
+            MakeDishName();
             Cookbook.Instance.CheckAndUnlockRecipe(this);
         }
         
@@ -87,7 +89,14 @@ public class Dish : MonoBehaviour
         return MatchResult.Bad;
     }
 
-    
+    public void MakeDishName()
+    {
+        dishName = string.Empty;
+
+        dishName += ingredients[IngredientCategory.Main].ingredientName + "ed ";
+        dishName += ingredients[IngredientCategory.Base].ingredientName + " with ";
+        dishName += ingredients[IngredientCategory.Sauce].ingredientName;
+    }
 }
 
 public enum MatchResult
