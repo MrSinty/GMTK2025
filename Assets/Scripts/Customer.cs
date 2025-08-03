@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
+public class Customer :  Interactable, IDialogueOptionReciever
 {
     [Header("Movement Settings")]
     public Transform[] waypoints; // Waypoints to walk through
@@ -60,7 +60,17 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     
     public CustomerState currentState = CustomerState.Walking;
     public bool IsInteractable { get; set; } = false; // Start as false, will be set to true when seated
-    
+    public void Tint()
+    {
+
+    }
+
+    public void Untint()
+    {
+    }
+
+    public Color TintColor { get; set; }
+
     private int currentWaypointIndex = 0;
     private Vector3 targetPosition;
     private float approachTimer = 0f;
@@ -202,7 +212,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     }
     
     // IInteractable implementation - this is the main interaction method
-    public void Interact()
+    public override void Interact()
     {
         if (!IsInteractable) return;
         

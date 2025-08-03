@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class IngredientInstance : MonoBehaviour
+public class IngredientInstance : PickUp
 {
     public ProductData data;
     [SerializeField] private new SpriteRenderer renderer;
@@ -8,6 +8,11 @@ public class IngredientInstance : MonoBehaviour
     [HideInInspector] public IngredientState state;
     [HideInInspector] public Sprite curSprite;
 
+
+    public IngredientInstance()
+    {
+        
+    }
     private void Awake()
     {
         state = IngredientState.Raw;
