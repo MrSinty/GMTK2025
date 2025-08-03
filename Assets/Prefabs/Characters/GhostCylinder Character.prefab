@@ -56,7 +56,38 @@ Transform:
   m_GameObject: {fileID: 828347839112336486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.77, z: 0}
+  m_LocalPosition: {x: 2.74, y: -8.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4377170680234565916}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1038988165566177680
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2625963286712020675}
+  m_Layer: 0
+  m_Name: Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2625963286712020675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038988165566177680}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,6 +122,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2625963286712020675}
   - {fileID: 3275562522313530481}
   - {fileID: 3760991702891126757}
   - {fileID: 3862028488906581075}
@@ -287,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 2106110934959516825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.69, y: -3.75, z: 0}
+  m_LocalPosition: {x: 5.92, y: -8.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,7 +425,7 @@ Transform:
   m_GameObject: {fileID: 4195375706820505084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.18, y: -7.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -624,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
+  - {fileID: 2625963286712020675}
   - {fileID: 3275562522313530481}
   - {fileID: 3760991702891126757}
   - {fileID: 3862028488906581075}
@@ -655,11 +688,9 @@ MonoBehaviour:
       options:
       - optionText: Hint
         effect: 1
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 2
       - optionText: Sure
         effect: 0
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: -1
       nextSentenceId: -1
     - id: 2
@@ -689,11 +720,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -714,36 +743,18 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
       sentence: "Acceptable. I won\u2019t be too harsh this time."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: Now is not the time for chatter. Return to the stove.
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
   perfectDishDialogue:
@@ -755,11 +766,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: 0
     - id: 1
@@ -771,15 +780,7 @@ MonoBehaviour:
       nextSentenceId: -1
     - id: 2
       sentence: Now is not the time for chatter. Return to the stove.
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 0
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
   familyDishDialogue:
@@ -791,38 +792,20 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
       sentence: "\u2026 I don\u2019t believe my taste buds. This is it. The station
         dish. You couldn\u2019t have known. It\u2019s like proof that time here...
         loops with memory."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: Now is not the time for chatter. Return to the stove.
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
   onFamilyRecipeShared:

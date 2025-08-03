@@ -11,12 +11,11 @@ public class CustomerSpawner : MonoBehaviour
     
     [Header("Spawn Settings")]
     public Transform spawnPoint; // Where customers spawn
-    public float spawnInterval = 45f; // Time between customer spawns
+    public float[] spawnIntervals = {45f, 45f, 45f, 45f}; // Time between customer spawns
     public float firstCustomerDelay = 10f; // Delay before first customer
     
     [Header("Events")]
-    public UnityEvent onCriticBlocked; // Fired when critic should spawn but can't
-    public UnityEvent onAllCustomersSatisfied; // Fired when all 3 regular customers were satisfied
+    public UnityEvent onAllCustomersLeft; // Fired when all 3 regular customers were satisfied
     public UnityEvent<int> onCustomerSpawned; // Fired when a customer spawns (passes customer index)
     
     // Track customer satisfaction
@@ -24,7 +23,7 @@ public class CustomerSpawner : MonoBehaviour
     private int currentCustomerIndex = 0;
     private bool isSpawning = false;
     private List<Customer> activeCustomers = new List<Customer>();
-    
+
     // Coroutine reference
     private Coroutine spawnCoroutine;
     
@@ -101,7 +100,6 @@ public class CustomerSpawner : MonoBehaviour
                 {
                     // Not all customers were satisfied, critic doesn't come
                     Debug.Log("Critic blocked - not all customers were satisfied!");
-                    onCriticBlocked?.Invoke();
                 }
                 
                 // End spawning cycle after critic decision
@@ -114,7 +112,7 @@ public class CustomerSpawner : MonoBehaviour
                 SpawnCustomer(currentCustomerIndex);
                 
                 // Wait for next spawn
-                yield return new WaitForSeconds(spawnInterval);
+                yield return new WaitForSeconds(spawnIntervals[currentCustomerIndex]);
             }
         }
     }
@@ -133,27 +131,21 @@ public class CustomerSpawner : MonoBehaviour
         
         if (customer != null)
         {
-            // Subscribe to customer events
             customer.onCustomerSatisfied.AddListener(() => OnCustomerSatisfied(index));
             customer.onCustomerEnraged.AddListener(() => OnCustomerUnsatisfied(index));
             customer.onCustomerLeft.AddListener(() => OnCustomerLeft(index));
             
-            // Add to active customers list
             activeCustomers.Add(customer);
             
-            // Trigger entry if needed
             customer.TriggerCafeEntry();
+        
+            onCustomerSpawned?.Invoke(currentCustomerIndex);
+            currentCustomerIndex++; //Move to next Customer
         }
         else
         {
             Debug.LogError($"Spawned customer prefab at index {index} doesn't have Customer component in any child!");
         }
-        
-        // Fire spawn event
-        onCustomerSpawned?.Invoke(index);
-        
-        // Move to next customer
-        currentCustomerIndex++;
         
         Debug.Log($"Spawned customer {index + 1} of 4");
     }
@@ -178,22 +170,10 @@ public class CustomerSpawner : MonoBehaviour
     
     private void OnCustomerLeft(int customerIndex)
     {
-        //RemoveCustomerFromActive(customerIndex);
-        if(AreNCustomersSatisfied(customerSatisfied.Length))
+        if(customerIndex == (activeCustomers.Count - 1))
         {
-            onAllCustomersSatisfied?.Invoke();
-        }
-    }
-    
-    private void RemoveCustomerFromActive(int customerIndex)
-    {
-        // Find and remove the customer from active list
-        for (int i = activeCustomers.Count - 1; i >= 0; i--)
-        {
-            if (activeCustomers[i] == null || !activeCustomers[i].gameObject.activeSelf)
-            {
-                activeCustomers.RemoveAt(i);
-            }
+            onAllCustomersLeft?.Invoke();
+            Debug.Log("All customers left!");
         }
     }
     

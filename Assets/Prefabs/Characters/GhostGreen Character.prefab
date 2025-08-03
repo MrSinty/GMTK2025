@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 813717075346176312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.32, y: -6.57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 828347839112336486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.77, z: 0}
+  m_LocalPosition: {x: -0.16, y: -12.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -91,6 +91,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 739366109130210345}
   - {fileID: 3275562522313530481}
   - {fileID: 3760991702891126757}
   - {fileID: 3862028488906581075}
@@ -287,7 +288,7 @@ Transform:
   m_GameObject: {fileID: 2106110934959516825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.69, y: -3.75, z: 0}
+  m_LocalPosition: {x: 1.96, y: -12.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,6 +392,37 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4195375706820505084}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.69, y: -10.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4377170680234565916}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4544787300058569764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 739366109130210345}
+  m_Layer: 0
+  m_Name: Start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &739366109130210345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4544787300058569764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -624,6 +656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
+  - {fileID: 739366109130210345}
   - {fileID: 3275562522313530481}
   - {fileID: 3760991702891126757}
   - {fileID: 3862028488906581075}
@@ -654,11 +687,9 @@ MonoBehaviour:
       options:
       - optionText: Hint
         effect: 1
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 2
       - optionText: Sure
         effect: 0
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: -1
       nextSentenceId: -1
     - id: 2
@@ -688,11 +719,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -713,36 +742,18 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
       sentence: "Meh. I\u2019d give it a three outta five."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   perfectDishDialogue:
@@ -754,11 +765,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: 0
     - id: 1
@@ -770,15 +779,7 @@ MonoBehaviour:
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 0
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   familyDishDialogue:
@@ -790,11 +791,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -802,27 +801,11 @@ MonoBehaviour:
         the one! Just like that evening in the kitchen. Me and dad ate in silence,
         even the cat didn\u2019t meow. Then he said: \u201CThis is what real food
         tastes like.\u201D Dude... you hit a memory."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   onFamilyRecipeShared:
