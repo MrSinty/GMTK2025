@@ -7,6 +7,7 @@ public class IngredientInstance : MonoBehaviour
 
     [HideInInspector] public IngredientState state;
     [HideInInspector] public Sprite curSprite;
+    [HideInInspector] public string ingredientName;
 
     private void Awake()
     {
@@ -16,6 +17,7 @@ public class IngredientInstance : MonoBehaviour
         curSprite = data.GetSpriteForState(state);
 
         renderer.sprite = curSprite;
+        ingredientName = data.productName;
     }
 
     public int GetActualID()

@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fridgeUIRoot: {fileID: 8352252385851934869}
-  database: {fileID: 11400000, guid: daf21bad753e29c43b5a3a00334a86ca, type: 2}
+  database: {fileID: 11400000, guid: 83452a16d1d3fc9478c9178f254cbb58, type: 2}
   contentParent: {fileID: 3736990290429605426}
   productUIPrefab: {fileID: 7549101563696312456, guid: ad6a976e663a2eb4897c4f70fd29fad1, type: 3}
 --- !u!1 &2229582637097109299

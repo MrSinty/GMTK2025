@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9c3218b1b766441acd82eaee85fe20, type: 3}
   m_Name: Recipe2
   m_EditorClassIdentifier: 
-  dishID: 121
+  dishID: 112
   dishName: aaaaaaa
   description: AAAsdpokfdsjfas'kojas
-  quality: 3
+  quality: 0
   dishSprite: {fileID: 1111982159, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   baseSprite: {fileID: 967679067, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   mainSprite: {fileID: -2106111602, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
