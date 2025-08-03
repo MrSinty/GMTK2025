@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class CustomerSpawner : MonoBehaviour
 {
+    public static CustomerSpawner instance;
+    
     [Header("Customer Prefabs")]
     [Tooltip("Array of customer prefabs in order (first 3 are regular customers, 4th is critic)")]
     public GameObject[] customerPrefabs = new GameObject[4];
@@ -26,6 +28,22 @@ public class CustomerSpawner : MonoBehaviour
 
     // Coroutine reference
     private Coroutine spawnCoroutine;
+    
+    void Awake()
+    {
+        // Singleton pattern implementation
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Debug.LogWarning("Multiple CustomerSpawner instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+    }
     
     void Start()
     {

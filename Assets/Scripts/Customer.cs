@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Customer : Interactable, IDialogueOptionReciever
+public class Customer : Interactable
 {
     [Header("Movement Settings")]
     public Transform[] waypoints; // Waypoints to walk through
@@ -111,6 +111,9 @@ public class Customer : Interactable, IDialogueOptionReciever
         {
             HandleSeatedBehavior();
         }
+        
+        // Check for animation completion
+        CheckAnimationCompletion();
     }
     
     protected void HandleSeatedBehavior()
@@ -494,6 +497,99 @@ public class Customer : Interactable, IDialogueOptionReciever
         DialogueManager.instance.onDialogueOptionChosen.RemoveListener(OnDialogueOptionChosen);
     }
 
+    protected void CheckAnimationCompletion()
+    {
+        if (animator == null) return;
+        
+        // Get current animation info
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        
+        // Check if current animation is about to finish (within 0.1 seconds)
+        if (stateInfo.normalizedTime >= 0.9f && !stateInfo.loop)
+        {
+            // Animation is finishing, switch states based on current state
+            OnAnimationComplete();
+        }
+    }
+    
+    protected virtual void OnAnimationComplete()
+    {
+        // Override this method in derived classes for custom behavior
+        Debug.Log($"Animation completed for state: {currentState}");
+        
+        // Example: Switch states based on animation completion
+        switch (currentState)
+        {
+            case CustomerState.Walking:
+                // Walking animation finished, switch to seated
+                if (isSeated)
+                {
+                    currentState = CustomerState.Seated;
+                    isWalking = false;
+                    if (animator != null)
+                    {
+                        animator.SetBool("IsWalking", false);
+                        animator.SetBool("IsSeated", true);
+                    }
+                }
+                break;
+                
+            case CustomerState.Seated:
+                // Seated animation finished, could trigger dialogue
+                if (IsInteractable)
+                {
+                    currentState = CustomerState.Talking;
+                }
+                break;
+                
+            // Add more cases as needed for your specific animations
+        }
+    }
+    
+    // Animation event methods that can be called from animation clips
+    public void OnWalkAnimationStart()
+    {
+        Debug.Log("Walk animation started");
+        // Add any logic that should happen when walking starts
+    }
+    
+    public void OnWalkAnimationEnd()
+    {
+        Debug.Log("Walk animation ended");
+        OnAnimationComplete(); // Trigger state change
+    }
+    
+    public void OnSitAnimationStart()
+    {
+        Debug.Log("Sit animation started");
+        // Add any logic that should happen when sitting starts
+    }
+    
+    public void OnSitAnimationEnd()
+    {
+        Debug.Log("Sit animation ended");
+        OnAnimationComplete(); // Trigger state change
+    }
+    
+    // Example with parameters
+    public void OnAnimationEventWithParameter(string eventName)
+    {
+        Debug.Log($"Animation event: {eventName}");
+        
+        switch (eventName)
+        {
+            case "WalkComplete":
+                OnWalkAnimationEnd();
+                break;
+            case "SitComplete":
+                OnSitAnimationEnd();
+                break;
+            case "TalkStart":
+                currentState = CustomerState.Talking;
+                break;
+        }
+    }
+    
     protected void OnInitialOrderDialogueEnded()
     {
         // Unsubscribe from the event
