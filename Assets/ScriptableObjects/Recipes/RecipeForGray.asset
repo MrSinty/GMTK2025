@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9c3218b1b766441acd82eaee85fe20, type: 3}
   m_Name: RecipeForGray
   m_EditorClassIdentifier: 
-  dishID: 322
-  dishName: bbbbbbb
-  description: AAAsdpokfdsjfas'kojas
+  dishID: 122
+  dishName: Imperial Dinner
+  description: You stuck here, get used to it
   quality: 1
   dishSprite: {fileID: 1111982159, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
-  baseSprite: {fileID: 1115399267, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
+  baseSprite: {fileID: 733333071, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   mainSprite: {fileID: -954941836, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
-  sauceSprite: {fileID: -1330839423, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
-  isUnlocked: 1
+  sauceSprite: {fileID: 112951884, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
+  isUnlocked: 0

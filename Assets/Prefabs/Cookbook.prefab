@@ -145,7 +145,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c877d5e8a46262d49ad302c771ee99c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allRecipes: []
+  specificRecipes:
+  - {fileID: 11400000, guid: 8bf376d868899714a964fc83e22f5ceb, type: 2}
+  - {fileID: 11400000, guid: e654079f688e8e6469881cca74b28ddd, type: 2}
+  - {fileID: 11400000, guid: c1315705533e3ba46bb22818f293e57a, type: 2}
+  - {fileID: 11400000, guid: e077f8b137bbcfc4c87d0d63f046012d, type: 2}
+  - {fileID: 11400000, guid: c6bffaead3212394c9d9846bd6cbb042, type: 2}
+  - {fileID: 11400000, guid: c01beeadb3ccdb74dbf13a428f2986e2, type: 2}
+  - {fileID: 11400000, guid: 7c74f2aded7688248b998122c2d3f1ad, type: 2}
   cookbookUI: {fileID: 141949715249198939}
   interactionPrompt: Open Cookbook
   allProducts: {fileID: 11400000, guid: daf21bad753e29c43b5a3a00334a86ca, type: 2}
