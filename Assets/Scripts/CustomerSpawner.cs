@@ -25,6 +25,7 @@ public class CustomerSpawner : MonoBehaviour
     private int currentCustomerIndex = 0;
     private bool isSpawning = false;
     private List<Customer> activeCustomers = new List<Customer>();
+    private int customersLeftCount = 0; // Track how many customers have left
 
     // Coroutine reference
     private Coroutine spawnCoroutine;
@@ -104,35 +105,18 @@ public class CustomerSpawner : MonoBehaviour
         // Wait for initial delay
         yield return new WaitForSeconds(firstCustomerDelay);
         
-        while (isSpawning && currentCustomerIndex < customerPrefabs.Length)
+        while (isSpawning && currentCustomerIndex < 3) // Only spawn first 3 customers initially
         {
-            // Check if we're trying to spawn the critic (4th customer)
-            if (currentCustomerIndex == 3)
-            {
-                if (AreNCustomersSatisfied(3))
-                {
-                    // All customers were satisfied, spawn the critic
-                    SpawnCustomer(currentCustomerIndex);
-                }
-                else
-                {
-                    // Not all customers were satisfied, critic doesn't come
-                    Debug.Log("Critic blocked - not all customers were satisfied!");
-                }
-                
-                // End spawning cycle after critic decision
-                isSpawning = false;
-                yield break;
-            }
-            else
-            {
-                // Spawn regular customer
-                SpawnCustomer(currentCustomerIndex);
-                
-                // Wait for next spawn
-                yield return new WaitForSeconds(spawnIntervals[currentCustomerIndex]);
-            }
+            // Spawn regular customer
+            SpawnCustomer(currentCustomerIndex);
+            
+            // Wait for next spawn
+            yield return new WaitForSeconds(spawnIntervals[currentCustomerIndex]);
         }
+        
+        // After spawning all 3 regular customers, spawning pauses
+        // Critic will be spawned later when all regular customers have left
+        Debug.Log("All 3 regular customers spawned. Waiting for them to be served before critic decision.");
     }
     
     private void SpawnCustomer(int index)
@@ -189,23 +173,74 @@ public class CustomerSpawner : MonoBehaviour
     
     private void OnCustomerLeft(int customerIndex)
     {
-        if(customerIndex == (activeCustomers.Count - 1))
+        customersLeftCount++;
+        Debug.Log($"Customer {customerIndex + 1} left. Total customers left: {customersLeftCount}");
+        
+        // Remove customer from active list
+        activeCustomers.RemoveAll(customer => customer == null);
+        
+        // Check if all 3 regular customers have left and critic hasn't been spawned yet
+        if (customersLeftCount == 3 && currentCustomerIndex == 3)
         {
-            onAllCustomersLeft?.Invoke();
-            Debug.Log("All customers left!");
+            // Time to decide about the critic
+            if (AreNCustomersSatisfied(3))
+            {
+                Debug.Log("All 3 regular customers were satisfied! Spawning critic...");
+                SpawnCustomer(3); // Spawn the critic (index 3)
+            }
+            else
+            {
+                Debug.Log("Not all regular customers were satisfied. Critic will not come today.");
+                // All customers are done, fire the event
+                onAllCustomersLeft?.Invoke();
+                Debug.Log($"All customers left! Expected: 3, Left: {customersLeftCount}");
+            }
+        }
+        else
+        {
+            // Determine how many customers we expected
+            int expectedCustomers = GetExpectedCustomerCount();
+            
+            // Check if all expected customers have left
+            if (customersLeftCount >= expectedCustomers)
+            {
+                onAllCustomersLeft?.Invoke();
+                Debug.Log($"All customers left! Expected: {expectedCustomers}, Left: {customersLeftCount}");
+            }
+        }
+    }
+    
+    private int GetExpectedCustomerCount()
+    {
+        // If we actually spawned the critic (4th customer), expect 4
+        if (currentCustomerIndex >= 4)
+        {
+            return 4;
+        }
+        // Otherwise, expect the default 3 regular customers
+        else
+        {
+            return 3;
         }
     }
     
     private bool AreNCustomersSatisfied(int n)
     {
         int satisfiedCount = 0;
-        for (int i = 0; i < customerSatisfied.Length; i++)
+        Debug.Log($"Checking customer satisfaction for critic decision:");
+        for (int i = 0; i < 3; i++) // Only check first 3 customers for critic decision
         {
             if (customerSatisfied[i])
             {
                 satisfiedCount++;
+                Debug.Log($"  Customer {i + 1}: SATISFIED");
+            }
+            else
+            {
+                Debug.Log($"  Customer {i + 1}: NOT satisfied");
             }
         }
+        Debug.Log($"Total satisfied: {satisfiedCount}/{n} required");
         return satisfiedCount >= n;
     }
     
@@ -216,6 +251,7 @@ public class CustomerSpawner : MonoBehaviour
         
         // Reset tracking
         currentCustomerIndex = 0;
+        customersLeftCount = 0; // Reset customer left counter
         for (int i = 0; i < customerSatisfied.Length; i++)
         {
             customerSatisfied[i] = false;
@@ -247,6 +283,16 @@ public class CustomerSpawner : MonoBehaviour
         return isSpawning;
     }
     
+    public int GetCustomersLeftCount()
+    {
+        return customersLeftCount;
+    }
+    
+    public int GetExpectedCustomersCount()
+    {
+        return GetExpectedCustomerCount();
+    }
+    
     // Debug method to force critic spawn (for testing)
     [ContextMenu("Force Critic Spawn")]
     public void ForceCriticSpawn()
@@ -258,15 +304,30 @@ public class CustomerSpawner : MonoBehaviour
         }
         
         // Set all customers as satisfied
-        for (int i = 0; i < customerSatisfied.Length; i++)
+        for (int i = 0; i < 3; i++)
         {
             customerSatisfied[i] = true;
         }
         
-        // Spawn critic
+        Debug.Log("Forced all regular customers to be satisfied for testing");
+        
+        // Spawn critic if conditions are right
         if (currentCustomerIndex == 3)
         {
             SpawnCustomer(3);
         }
+    }
+    
+    [ContextMenu("Check Customer Satisfaction")]
+    public void DebugCheckSatisfaction()
+    {
+        Debug.Log("=== Customer Satisfaction Status ===");
+        for (int i = 0; i < customerSatisfied.Length; i++)
+        {
+            Debug.Log($"Customer {i + 1}: {(customerSatisfied[i] ? "SATISFIED" : "NOT satisfied")}");
+        }
+        Debug.Log($"Current customer index: {currentCustomerIndex}");
+        Debug.Log($"Customers left: {customersLeftCount}");
+        Debug.Log($"Expected customers: {GetExpectedCustomerCount()}");
     }
 }

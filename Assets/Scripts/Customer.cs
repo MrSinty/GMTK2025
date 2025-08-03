@@ -306,16 +306,8 @@ public class Customer : Interactable
     // Check if a dish ID is in the acceptable dishes array
     protected bool IsAcceptableDish(int dishId)
     {
-        if (acceptableDishIds == null) return false;
         
-        foreach (int acceptableId in acceptableDishIds)
-        {
-            if (acceptableId == dishId)
-            {
-                return true;
-            }
-        }
-        return false;
+        return dishId <= 1000;
     }
     
     // Customer leaves the cafe
@@ -423,7 +415,7 @@ public class Customer : Interactable
             if (animator != null)
             {
                 animator.SetBool("IsWalking", true);
-                animator.SetFloat("horizontal", motionVector.x); // Invert horizontal to fix flipped animations
+                animator.SetFloat("horizontal", -motionVector.x); // Invert horizontal to fix flipped animations
                 animator.SetFloat("vertical", motionVector.y);
             }
             

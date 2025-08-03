@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 828347839112336486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.77, z: 0}
+  m_LocalPosition: {x: 6.8, y: -11.86, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -287,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 2106110934959516825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.69, y: -3.75, z: 0}
+  m_LocalPosition: {x: 14.52, y: -10.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -393,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 4195375706820505084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.34, y: -6.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -658,8 +658,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72b589620682f74dbe66788534ca521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tintColor: {r: 1, g: 1, b: 0.5, a: 1}
   waypoints:
   - {fileID: 3275562522313530481}
+  - {fileID: 3760991702891126757}
   - {fileID: 3862028488906581075}
   lerpSpeed: 3
   seatPosition: {fileID: 7478274663169461817}

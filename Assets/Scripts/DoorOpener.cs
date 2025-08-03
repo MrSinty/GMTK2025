@@ -1,14 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class DoorOpener : MonoBehaviour
+public class DoorOpener : Interactable
 {
+    public static DoorOpener instance;
+    
     public Animator doorAnimator;
+    
+    [Header("Door Interaction")]
+    [Tooltip("Event fired when player interacts with the door")]
+    public UnityEvent onDoorInteraction;
+    
+    void Awake()
+    {
+        // Singleton pattern
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple DoorOpener instances detected. Destroying duplicate.");
+            Destroy(gameObject);
+            return;
+        }
+    }
     
     void Start()
     {
         doorAnimator = GetComponent<Animator>();
+        
+        // Initially not interactable until GameLoopManager needs it
+        IsInteractable = false;
         if(CustomerSpawner.instance == null)
             Debug.Log("DoorOpener: CustomerSpawner.instance is null");
         // Try to subscribe immediately, but also set up a coroutine to retry if needed
@@ -67,6 +92,31 @@ public class DoorOpener : MonoBehaviour
         }
     }
 
+    public override void Interact()
+    {
+        if (!IsInteractable) return;
+        
+        Debug.Log("DoorOpener: Player interacted with door");
+        
+        // Fire the door interaction event
+        onDoorInteraction?.Invoke();
+        
+        // Disable further interactions after use
+        IsInteractable = false;
+    }
+    
+    public void EnableDoorInteraction()
+    {
+        IsInteractable = true;
+        Debug.Log("DoorOpener: Door interaction enabled");
+    }
+    
+    public void DisableDoorInteraction()
+    {
+        IsInteractable = false;
+        Debug.Log("DoorOpener: Door interaction disabled");
+    }
+    
     void OnDestroy()
     {
         // Clean up the listener when this object is destroyed
