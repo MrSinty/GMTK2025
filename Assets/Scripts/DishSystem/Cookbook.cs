@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class Cookbook : MonoBehaviour, IInteractable
+public class Cookbook : Interactable
 {
     [Header("Cookbook Settings")]
     public List<CookbookEntry> specificRecipes = new List<CookbookEntry>();
@@ -193,7 +193,7 @@ public class Cookbook : MonoBehaviour, IInteractable
     }
 
     // IInteractable implementation
-    public void Interact()
+    public override void Interact()
     {
         if (cookbookUI != null)
         {
