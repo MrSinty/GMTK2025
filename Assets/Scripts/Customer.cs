@@ -246,7 +246,7 @@ public class Customer : Interactable
     
     protected virtual int GetPlayerHeldItem()
     {
-        return playerHeldItem;
+        return GameObject.FindGameObjectWithTag("ItemSlot").GetComponent<ItemSlot>().Get().productID;
     }
     
     // Validate the item and show appropriate dialogue
