@@ -20,7 +20,7 @@ public class CustomerSpawner : MonoBehaviour
     public UnityEvent<int> onCustomerSpawned; // Fired when a customer spawns (passes customer index)
     
     // Track customer satisfaction
-    private bool[] customerSatisfied = new bool[3]; // Track first 3 customers
+    private bool[] customerSatisfied = new bool[4];
     private int currentCustomerIndex = 0;
     private bool isSpawning = false;
     private List<Customer> activeCustomers = new List<Customer>();
@@ -92,11 +92,10 @@ public class CustomerSpawner : MonoBehaviour
             // Check if we're trying to spawn the critic (4th customer)
             if (currentCustomerIndex == 3)
             {
-                if (AreAllCustomersSatisfied())
+                if (AreNCustomersSatisfied(3))
                 {
                     // All customers were satisfied, spawn the critic
                     SpawnCustomer(currentCustomerIndex);
-                    onAllCustomersSatisfied?.Invoke();
                 }
                 else
                 {
@@ -137,6 +136,7 @@ public class CustomerSpawner : MonoBehaviour
             // Subscribe to customer events
             customer.onCustomerSatisfied.AddListener(() => OnCustomerSatisfied(index));
             customer.onCustomerEnraged.AddListener(() => OnCustomerUnsatisfied(index));
+            customer.onCustomerLeft.AddListener(() => OnCustomerLeft(index));
             
             // Add to active customers list
             activeCustomers.Add(customer);
@@ -160,26 +160,29 @@ public class CustomerSpawner : MonoBehaviour
     
     private void OnCustomerSatisfied(int customerIndex)
     {
-        if (customerIndex < 3) // Only track first 3 customers
+        if (customerIndex < 4) // Only track first 3 customers
         {
             customerSatisfied[customerIndex] = true;
             Debug.Log($"Customer {customerIndex + 1} was satisfied!");
         }
-        
-        // Clean up customer reference
-        RemoveCustomerFromActive(customerIndex);
     }
     
     private void OnCustomerUnsatisfied(int customerIndex)
     {
-        if (customerIndex < 3) // Only track first 3 customers
+        if (customerIndex < 4) // Only track first 3 customers
         {
             customerSatisfied[customerIndex] = false;
             Debug.Log($"Customer {customerIndex + 1} was unsatisfied!");
         }
-        
-        // Clean up customer reference
-        RemoveCustomerFromActive(customerIndex);
+    }
+    
+    private void OnCustomerLeft(int customerIndex)
+    {
+        //RemoveCustomerFromActive(customerIndex);
+        if(AreNCustomersSatisfied(customerSatisfied.Length))
+        {
+            onAllCustomersSatisfied?.Invoke();
+        }
     }
     
     private void RemoveCustomerFromActive(int customerIndex)
@@ -194,16 +197,17 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
     
-    private bool AreAllCustomersSatisfied()
+    private bool AreNCustomersSatisfied(int n)
     {
+        int satisfiedCount = 0;
         for (int i = 0; i < customerSatisfied.Length; i++)
         {
-            if (!customerSatisfied[i])
+            if (customerSatisfied[i])
             {
-                return false;
+                satisfiedCount++;
             }
         }
-        return true;
+        return satisfiedCount >= n;
     }
     
     // Public methods for external control
@@ -264,7 +268,6 @@ public class CustomerSpawner : MonoBehaviour
         if (currentCustomerIndex == 3)
         {
             SpawnCustomer(3);
-            onAllCustomersSatisfied?.Invoke();
         }
     }
 }

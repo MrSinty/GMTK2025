@@ -19,19 +19,14 @@ public class Critic : Customer
     [Header("Critic Events")]
     public UnityEvent onCriticServed; // Event triggered when perfect dish is served
     
-    private bool isPerfectDishServed = false;
-    
-    // Override the ValidateAndRespondToItem method to handle critic-specific logic
     protected override void ValidateAndRespondToItem(int itemId)
     {
         DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
         
         if (itemId == perfectDishId)
         {
-            // Perfect dish - only this satisfies the critic
             currentState = CustomerState.Satisfied;
             isPerfectDish = true;
-            isPerfectDishServed = true;
             if (perfectDishDialogue != null)
             {
                 DialogueManager.instance.StartDialogue(perfectDishDialogue);
@@ -39,7 +34,6 @@ public class Critic : Customer
         }
         else if (itemId == familyDishId1)
         {
-            // First family dish - just dialogue, doesn't satisfy
             if (familyDish1Dialogue != null)
             {
                 DialogueManager.instance.StartDialogue(familyDish1Dialogue);
@@ -47,7 +41,6 @@ public class Critic : Customer
         }
         else if (itemId == familyDishId2)
         {
-            // Second family dish - just dialogue, doesn't satisfy
             if (familyDish2Dialogue != null)
             {
                 DialogueManager.instance.StartDialogue(familyDish2Dialogue);
@@ -55,7 +48,6 @@ public class Critic : Customer
         }
         else if (itemId == familyDishId3)
         {
-            // Third family dish - just dialogue, doesn't satisfy
             if (familyDish3Dialogue != null)
             {
                 DialogueManager.instance.StartDialogue(familyDish3Dialogue);
@@ -63,8 +55,6 @@ public class Critic : Customer
         }
         else
         {
-            // Unacceptable dish - customer is enraged
-            currentState = CustomerState.Enraged;
             if (unacceptableDishDialogue != null)
             {
                 DialogueManager.instance.StartDialogue(unacceptableDishDialogue);
@@ -72,22 +62,17 @@ public class Critic : Customer
         }
     }
     
-    // Override the OnDialogueEnded method to handle critic-specific events
     protected override void OnDialogueEnded()
     {
-        // Unsubscribe from the event
         DialogueManager.instance.onDialogueEnded.RemoveListener(OnDialogueEnded);
         
-        // Trigger appropriate events based on customer state
         switch (currentState)
         {
             case CustomerState.Satisfied:
-                // Check if this was a perfect dish
-                if (isPerfectDishServed)
+                if (isPerfectDish)
                 {
-                    onCriticServed?.Invoke();
+                    onCustomerSatisfied?.Invoke();
                 }
-                onCustomerSatisfied?.Invoke();
                 LeaveCafe(CustomerState.Satisfied);
                 break;
             case CustomerState.Enraged:
@@ -95,27 +80,34 @@ public class Critic : Customer
                 LeaveCafe(CustomerState.Enraged);
                 break;
             default:
-                // For family dish dialogues that don't change state, just end the dialogue
                 break;
         }
         
-        // Reset the perfect dish flag
         isPerfectDish = false;
-        isPerfectDishServed = false;
     }
     
-    // Public method to check if a dish is one of the family dishes
     public bool IsFamilyDish(int dishId)
     {
         return dishId == familyDishId1 || dishId == familyDishId2 || dishId == familyDishId3;
     }
     
-    // Public method to get which family dish number (1, 2, or 3) a dish ID corresponds to
     public int GetFamilyDishNumber(int dishId)
     {
         if (dishId == familyDishId1) return 1;
         if (dishId == familyDishId2) return 2;
         if (dishId == familyDishId3) return 3;
         return 0; // Not a family dish
+    }
+
+    protected override void RespondToDish(int dishId)
+    {
+        if (dishId == perfectDishId)
+        {
+            currentState = CustomerState.Satisfied;
+        }
+        else
+        {
+            currentState = CustomerState.Enraged;
+        }
     }
 } 

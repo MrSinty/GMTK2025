@@ -6,7 +6,8 @@ public enum DialogueOptionEffect
 {
     None,
     GiveAHint,
-    EndDialogue
+    EndDialogue,
+    ServeDish
 }
 
 [System.Serializable]

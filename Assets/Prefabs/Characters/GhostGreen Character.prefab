@@ -579,7 +579,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1531119810, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+  m_Sprite: {fileID: -530382124, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -600,7 +600,7 @@ Animator:
   m_GameObject: {fileID: 8193453920132756326}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 479e29d9ff9b36446a30fa7528dd7d09, type: 2}
+  m_Controller: {fileID: 9100000, guid: ff6ac2c518b28494abee18ee1e17e0bf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -636,21 +636,21 @@ MonoBehaviour:
   approachPatienceTime: 15
   annoyedPatienceTime: 20
   extraPatienceMultiplier: 1.5
+  playerHeldItem: 0
   acceptableDishIds: 
-  perfectDishId: 122
-  familyDishId: 113
+  perfectDishId: 221
+  familyDishId: 322
   initialOrderDialogue:
     name: Name
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: "Good night. I\u2019m placing an order. I hope you work well under
-        pressure."
+      sentence: Yo, you're the cook, right? Impress me. And none of that fancy stuff,
+        got it?
       options: []
       nextSentenceId: 1
     - id: 1
-      sentence: I prefer dishes with simple, noble notes. Fish - the foundation of
-        stability.
+      sentence: I need something bold, like spicy sauce. Gotta wake myself up.
       options:
       - optionText: Hint
         effect: 1
@@ -662,7 +662,7 @@ MonoBehaviour:
         nextSentenceId: -1
       nextSentenceId: -1
     - id: 2
-      sentence: Soy sauce. Balance and tradition. You should know that.
+      sentence: Rice. I want it filling, not like that vegan stuff of yours.
       options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
@@ -671,24 +671,24 @@ MonoBehaviour:
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: I assume my order should be ready by now?
+      sentence: Hey, chef! Is my stuff ready?
       options: []
       nextSentenceId: 1
     - id: 1
-      sentence: Now is not the time for chatter. Return to the stove.
+      sentence: For real? Then get back to that kitchen before I fall asleep here!
       options: []
       nextSentenceId: -1
-    customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+    customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   unacceptableDishDialogue:
     name: Name
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: I assume my order should be ready by now?
+      sentence: Hey, chef! Is my stuff ready?
       options:
       - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
+        effect: 3
+        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
@@ -696,24 +696,24 @@ MonoBehaviour:
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
-      sentence: "This\u2026 is a crime against cuisine. A disgrace."
+      sentence: "Ugh! It\u2019s moving! You cook like a fly, or what?"
       options: []
       nextSentenceId: -1
     - id: 2
-      sentence: Now is not the time for chatter. Return to the stove.
+      sentence: For real? Then get back to that kitchen before I fall asleep here!
       options: []
       nextSentenceId: -1
-    customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+    customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   acceptableDishDialogue:
     name: Name
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: I assume my order should be ready by now?
+      sentence: Hey, chef! Is my stuff ready?
       options:
       - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
+        effect: 3
+        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
-      sentence: "Acceptable. I won\u2019t be too harsh this time."
+      sentence: "Meh. I\u2019d give it a three outta five."
       options:
       - optionText: Yes
         effect: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
         nextSentenceId: 2
       nextSentenceId: -1
     - id: 2
-      sentence: Now is not the time for chatter. Return to the stove.
+      sentence: For real? Then get back to that kitchen before I fall asleep here!
       options:
       - optionText: Yes
         effect: 0
@@ -744,16 +744,16 @@ MonoBehaviour:
         customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: -1
-    customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+    customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   perfectDishDialogue:
     name: Name
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: I assume my order should be ready by now?
+      sentence: Hey, chef! Is my stuff ready?
       options:
       - optionText: Yes
-        effect: 0
+        effect: 3
         customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
@@ -762,14 +762,14 @@ MonoBehaviour:
         nextSentenceId: 0
       nextSentenceId: 0
     - id: 1
-      sentence: "Such good noodles. In my youth, at Kyoto Station, someone served
-        me noodles with chicken in cream sauce\u2026 Simple, yet I was happy. Maybe
-        because it was made by my friend\u2019s mother. She poured her soul into
-        every drop."
+      sentence: "Nice! Nailed it. Hits like a punch to the chest - sharp, alive.
+        But you know\u2026 Dad used to toss mushrooms in a salad and just pour soy
+        sauce over it. \u201CReal food doesn\u2019t need to shout,\u201D he\u2019d
+        say."
       options: []
       nextSentenceId: -1
     - id: 2
-      sentence: Now is not the time for chatter. Return to the stove.
+      sentence: For real? Then get back to that kitchen before I fall asleep here!
       options:
       - optionText: Yes
         effect: 0
@@ -780,17 +780,17 @@ MonoBehaviour:
         customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: -1
-    customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+    customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   familyDishDialogue:
     name: 
     startSentenceId: 0
     sentences:
     - id: 0
-      sentence: I assume my order should be ready by now?
+      sentence: Hey, chef! Is my stuff ready?
       options:
       - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
+        effect: 3
+        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
@@ -798,9 +798,10 @@ MonoBehaviour:
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
-      sentence: "\u2026 I don\u2019t believe my taste buds. This is it. The station
-        dish. You couldn\u2019t have known. It\u2019s like proof that time here...
-        loops with memory."
+      sentence: "Hold up. Is that\u2026 mushrooms, greens, soy? No way! That\u2019s
+        the one! Just like that evening in the kitchen. Me and dad ate in silence,
+        even the cat didn\u2019t meow. Then he said: \u201CThis is what real food
+        tastes like.\u201D Dude... you hit a memory."
       options:
       - optionText: Yes
         effect: 0
@@ -812,7 +813,7 @@ MonoBehaviour:
         nextSentenceId: 2
       nextSentenceId: -1
     - id: 2
-      sentence: Now is not the time for chatter. Return to the stove.
+      sentence: For real? Then get back to that kitchen before I fall asleep here!
       options:
       - optionText: Yes
         effect: 0
@@ -823,7 +824,7 @@ MonoBehaviour:
         customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: -1
-    customerImage: {fileID: -1302124799, guid: 9539c84a6475c83409096865d0fca068, type: 3}
+    customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   onFamilyRecipeShared:
     m_PersistentCalls:
       m_Calls: []
@@ -831,6 +832,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onCustomerEnraged:
+    m_PersistentCalls:
+      m_Calls: []
+  onCustomerLeft:
     m_PersistentCalls:
       m_Calls: []
   progressBarObject: {fileID: 1819701976557496929}
@@ -883,7 +887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8824876582876397518}
   m_Layer: 0
-  m_Name: GhostCylinder Character
+  m_Name: GhostGreen Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

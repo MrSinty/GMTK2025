@@ -26,6 +26,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     public float extraPatienceMultiplier = 1.5f; // Multiplier for extra patience time
     
     [Header("Order System")]
+    public int playerHeldItem = 0;
     public int[] acceptableDishIds; // Array of acceptable dish IDs
     public int perfectDishId; // ID of the perfect dish
     public int familyDishId; // ID of the family dish (hidden for Critic)
@@ -42,6 +43,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     public UnityEvent<int> onFamilyRecipeShared; // Event triggered when family recipe is shared, passes the recipe ID
     public UnityEvent onCustomerSatisfied; // Event triggered when customer is satisfied
     public UnityEvent onCustomerEnraged; // Event triggered when customer is enraged
+    public UnityEvent onCustomerLeft; // Event triggered when customer is enraged
     
     [Header("Progress Bar")]
     public GameObject progressBarObject; // The progress bar UI object
@@ -209,8 +211,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     {
         if (!IsInteractable) return;
         
-        // Get the item the player is holding (this will be implemented by the player)
-        int playerHeldItem = GetPlayerHeldItem();
+        playerHeldItem = GetPlayerHeldItem();
         
         if (currentState == CustomerState.Seated)
         {
@@ -241,7 +242,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     
     protected virtual int GetPlayerHeldItem()
     {
-        return 0;
+        return playerHeldItem;
     }
     
     // Validate the item and show appropriate dialogue
@@ -250,19 +251,14 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
         if (itemId == perfectDishId)
         {
-            // Perfect dish - give family recipe
-            currentState = CustomerState.Satisfied;
             isPerfectDish = true; // Mark this as a perfect dish
             if (perfectDishDialogue != null)
             {
-                // Subscribe to dialogue end event before starting the dialogue
                 DialogueManager.instance.StartDialogue(perfectDishDialogue);
             }
         }
         else if (itemId == familyDishId)
         {
-            // Family dish - give family recipe
-            currentState = CustomerState.Satisfied;
             if (familyDishDialogue != null)
             {
                 DialogueManager.instance.StartDialogue(familyDishDialogue);
@@ -270,23 +266,29 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         }
         else if (IsAcceptableDish(itemId))
         {
-            // Acceptable dish - customer is satisfied
-            currentState = CustomerState.Satisfied;
             if (acceptableDishDialogue != null)
             {
-                // Subscribe to dialogue end event before starting the dialogue
                 DialogueManager.instance.StartDialogue(acceptableDishDialogue);
             }
         }
         else
         {
-            // Unacceptable dish - customer is enraged
-            currentState = CustomerState.Enraged;
             if (unacceptableDishDialogue != null)
             {
-                // Subscribe to dialogue end event before starting the dialogue
                 DialogueManager.instance.StartDialogue(unacceptableDishDialogue);
             }
+        }
+    }
+
+    protected virtual void RespondToDish(int dishId)
+    {
+        if (IsAcceptableDish(dishId) || dishId == perfectDishId || dishId == familyDishId)
+        {
+            currentState = CustomerState.Satisfied;
+        }
+        else
+        {
+            currentState = CustomerState.Enraged;
         }
     }
 
@@ -338,6 +340,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         
         // Destroy or deactivate the customer
         gameObject.SetActive(false);
+        onCustomerLeft?.Invoke();
     }
     
     protected IEnumerator EnterCafe()
@@ -482,6 +485,10 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                 Debug.Log("Player asked for a hint");
                 HandleAnnoyed();
                 break;
+            case DialogueOptionEffect.ServeDish:
+                Debug.Log("Player served a dish");
+                ValidateAndRespondToItem(option.customer.perfectDishId);
+                break;
             default:
                 Debug.Log("No specific effect for this option");
                 break;
@@ -515,7 +522,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                     onFamilyRecipeShared?.Invoke(perfectDishId);
                 }
                 onCustomerSatisfied?.Invoke();
-                LeaveCafe(CustomerState.Enraged);
+                LeaveCafe(CustomerState.Satisfied);
                 break;
             case CustomerState.Enraged:
                 onCustomerEnraged?.Invoke();
