@@ -18,7 +18,7 @@ public class CustomerSpawner : MonoBehaviour
     
     [Header("Events")]
     public UnityEvent onAllCustomersLeft; // Fired when all 3 regular customers were satisfied
-    public UnityEvent<int> onCustomerSpawned; // Fired when a customer spawns (passes customer index)
+    public UnityEvent onCustomerSpawned; // Fired when a customer spawns (passes customer index)
     
     // Track customer satisfaction
     private bool[] customerSatisfied = new bool[4];
@@ -157,7 +157,8 @@ public class CustomerSpawner : MonoBehaviour
             
             customer.TriggerCafeEntry();
         
-            onCustomerSpawned?.Invoke(currentCustomerIndex);
+            Debug.Log($"CustomerSpawner: Invoking onCustomerSpawned event for customer {currentCustomerIndex}");
+            onCustomerSpawned?.Invoke();
             currentCustomerIndex++; //Move to next Customer
         }
         else
