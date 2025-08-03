@@ -7,6 +7,7 @@ public class IngredientInstance : PickUp
 
     [HideInInspector] public IngredientState state;
     [HideInInspector] public Sprite curSprite;
+    [HideInInspector] public string ingredientName;
 
 
     public IngredientInstance()
@@ -21,6 +22,7 @@ public class IngredientInstance : PickUp
         curSprite = data.GetSpriteForState(state);
 
         renderer.sprite = curSprite;
+        ingredientName = data.productName;
     }
 
     public int GetActualID()

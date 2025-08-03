@@ -6,6 +6,7 @@ public class Dish : PickUp
     public SpriteRenderer baseSprite;
     public SpriteRenderer mainSprite;
     public SpriteRenderer sauceSprite;
+    public string dishName;
 
     private Dictionary<IngredientCategory, IngredientInstance> ingredients = new();
 
@@ -59,7 +60,16 @@ public class Dish : PickUp
 
     public bool IsFullyReady()
     {
-        return ingredients.Count == 3 && !(GetDishID() >= 1000);
+        bool isReady = ingredients.Count == 3 && !(GetDishID() >= 1000);
+        
+        // Check for recipe unlock when dish is fully ready
+        if (isReady && Cookbook.Instance != null)
+        {
+            MakeDishName();
+            Cookbook.Instance.CheckAndUnlockRecipe(this);
+        }
+        
+        return isReady;
     }
 
     public bool MatchesClientOrder(int requestedID)
@@ -79,7 +89,14 @@ public class Dish : PickUp
         return MatchResult.Bad;
     }
 
-    
+    public void MakeDishName()
+    {
+        dishName = string.Empty;
+
+        dishName += ingredients[IngredientCategory.Main].ingredientName + "ed ";
+        dishName += ingredients[IngredientCategory.Base].ingredientName + " with ";
+        dishName += ingredients[IngredientCategory.Sauce].ingredientName;
+    }
 }
 
 public enum MatchResult

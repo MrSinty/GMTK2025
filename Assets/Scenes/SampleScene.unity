@@ -549,27 +549,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 216454773569136028, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 216454773569136028, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1475682111091271409, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 1475682111091271409, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -0.00012207031
       objectReference: {fileID: 0}
     - target: {fileID: 1633040884277203624, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3234138273828093084, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
@@ -613,25 +601,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3328970018119649477, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
+    - target: {fileID: 3642168529400260570, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3328970018119649477, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.00012207031
+    - target: {fileID: 3642168529400260570, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3642168529400260570, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -26.200073
       objectReference: {fileID: 0}
     - target: {fileID: 4127916224594725800, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4127916224594725800, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5398833652632637342, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
       propertyPath: m_Name
       value: LevelGrid
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075338973335558230, guid: d4b506b9e9fe89949b38de878d02525f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

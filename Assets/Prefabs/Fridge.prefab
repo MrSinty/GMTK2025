@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 7957948700419756305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fridgeUIRoot: {fileID: 8352252385851934869}
-  database: {fileID: 11400000, guid: daf21bad753e29c43b5a3a00334a86ca, type: 2}
+  database: {fileID: 11400000, guid: 83452a16d1d3fc9478c9178f254cbb58, type: 2}
   contentParent: {fileID: 3736990290429605426}
   productUIPrefab: {fileID: 7549101563696312456, guid: ad6a976e663a2eb4897c4f70fd29fad1, type: 3}
 --- !u!1 &2229582637097109299
@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7480080626025198898
 RectTransform:
   m_ObjectHideFlags: 0
@@ -955,7 +955,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.0000016463523}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7624349130488752893
 MonoBehaviour:
@@ -1030,9 +1030,9 @@ RectTransform:
   m_Father: {fileID: 8817143918028121115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -26.200073, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1887633036233529321
 CanvasRenderer:
