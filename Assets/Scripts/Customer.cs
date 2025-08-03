@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
+public class Customer : Interactable
 {
     [Header("Movement Settings")]
     public Transform[] waypoints; // Waypoints to walk through
@@ -111,6 +111,9 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         {
             HandleSeatedBehavior();
         }
+        
+        // Check for animation completion
+        CheckAnimationCompletion();
     }
     
     protected void HandleSeatedBehavior()
@@ -207,10 +210,11 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     }
     
     // IInteractable implementation - this is the main interaction method
-    public void Interact()
+    public override void Interact()
     {
         if (!IsInteractable) return;
         
+
         playerHeldItem = GetPlayerHeldItem();
         
         if (currentState == CustomerState.Seated)
@@ -249,6 +253,8 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     protected virtual void ValidateAndRespondToItem(int itemId)
     {
         DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
+        DialogueManager.instance.onDialogueOptionChosen.AddListener(OnDialogueOptionChosen);
+        
         if (itemId == perfectDishId)
         {
             isPerfectDish = true; // Mark this as a perfect dish
@@ -405,22 +411,19 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         float journeyLength = Vector3.Distance(startPos, targetPos);
         float startTime = Time.time;
         
+        Vector3 motionVector = (targetPos - startPos).normalized;
         while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
             float distCovered = (Time.time - startTime) * lerpSpeed;
             float fractionOfJourney = distCovered / journeyLength;
             
-            Vector3 previousPos = transform.position;
             transform.position = Vector3.Lerp(startPos, targetPos, fractionOfJourney);
-            
-            // Calculate motion vector
-            Vector3 motionVector = (transform.position - previousPos).normalized;
             
             // Update animation if available
             if (animator != null)
             {
                 animator.SetBool("IsWalking", true);
-                animator.SetFloat("horizontal", -motionVector.x); // Invert horizontal to fix flipped animations
+                animator.SetFloat("horizontal", motionVector.x); // Invert horizontal to fix flipped animations
                 animator.SetFloat("vertical", motionVector.y);
             }
             
@@ -474,12 +477,10 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         IsInteractable = false; // Reset interactable state
     }
 
-    public void OnDialogueOptionChosen(DialogueOption option)
+    public void OnDialogueOptionChosen(DialogueOptionEffect optionEffect)
     {
-        Debug.Log("Player chose option: " + option.optionText);
-        
-        // Handle different dialogue effects
-        switch (option.effect)
+        Debug.Log("Player chose option: " + optionEffect);
+        switch (optionEffect)
         {
             case DialogueOptionEffect.GiveAHint:
                 Debug.Log("Player asked for a hint");
@@ -487,14 +488,108 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                 break;
             case DialogueOptionEffect.ServeDish:
                 Debug.Log("Player served a dish");
-                ValidateAndRespondToItem(option.customer.perfectDishId);
+                RespondToDish(playerHeldItem);
                 break;
             default:
                 Debug.Log("No specific effect for this option");
                 break;
         }
+        DialogueManager.instance.onDialogueOptionChosen.RemoveListener(OnDialogueOptionChosen);
     }
 
+    protected void CheckAnimationCompletion()
+    {
+        if (animator == null) return;
+        
+        // Get current animation info
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+        
+        // Check if current animation is about to finish (within 0.1 seconds)
+        if (stateInfo.normalizedTime >= 0.9f && !stateInfo.loop)
+        {
+            // Animation is finishing, switch states based on current state
+            OnAnimationComplete();
+        }
+    }
+    
+    protected virtual void OnAnimationComplete()
+    {
+        // Override this method in derived classes for custom behavior
+        Debug.Log($"Animation completed for state: {currentState}");
+        
+        // Example: Switch states based on animation completion
+        switch (currentState)
+        {
+            case CustomerState.Walking:
+                // Walking animation finished, switch to seated
+                if (isSeated)
+                {
+                    currentState = CustomerState.Seated;
+                    isWalking = false;
+                    if (animator != null)
+                    {
+                        animator.SetBool("IsWalking", false);
+                        animator.SetBool("IsSeated", true);
+                    }
+                }
+                break;
+                
+            case CustomerState.Seated:
+                // Seated animation finished, could trigger dialogue
+                if (IsInteractable)
+                {
+                    currentState = CustomerState.Talking;
+                }
+                break;
+                
+            // Add more cases as needed for your specific animations
+        }
+    }
+    
+    // Animation event methods that can be called from animation clips
+    public void OnWalkAnimationStart()
+    {
+        Debug.Log("Walk animation started");
+        // Add any logic that should happen when walking starts
+    }
+    
+    public void OnWalkAnimationEnd()
+    {
+        Debug.Log("Walk animation ended");
+        OnAnimationComplete(); // Trigger state change
+    }
+    
+    public void OnSitAnimationStart()
+    {
+        Debug.Log("Sit animation started");
+        // Add any logic that should happen when sitting starts
+    }
+    
+    public void OnSitAnimationEnd()
+    {
+        Debug.Log("Sit animation ended");
+        OnAnimationComplete(); // Trigger state change
+    }
+    
+    // Example with parameters
+    public void OnAnimationEventWithParameter(string eventName)
+    {
+        Debug.Log($"Animation event: {eventName}");
+        
+        switch (eventName)
+        {
+            case "WalkComplete":
+                OnWalkAnimationEnd();
+                break;
+            case "SitComplete":
+                OnSitAnimationEnd();
+                break;
+            case "TalkStart":
+                currentState = CustomerState.Talking;
+                break;
+        }
+    }
+    
     protected void OnInitialOrderDialogueEnded()
     {
         // Unsubscribe from the event
@@ -522,10 +617,12 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                     onFamilyRecipeShared?.Invoke(perfectDishId);
                 }
                 onCustomerSatisfied?.Invoke();
+                Debug.Log("Customer satisfied!");
                 LeaveCafe(CustomerState.Satisfied);
                 break;
             case CustomerState.Enraged:
                 onCustomerEnraged?.Invoke();
+                Debug.Log("Customer enraged! and leaving");
                 LeaveCafe(CustomerState.Enraged);
                 break;
             default:

@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent onDialogueEnded; // Event triggered when any dialogue ends
+    public UnityEvent<DialogueOptionEffect> onDialogueOptionChosen; // Event triggered when a dialogue option is chosen
 
     private Dialogue currentDialogue;
     private DialogueSentence currentSentence;
@@ -135,6 +136,10 @@ public class DialogueManager : MonoBehaviour
 
     void OnOptionSelected(DialogueOption option)
     {
+        // Broadcast the dialogue option effect to all subscribers
+        onDialogueOptionChosen?.Invoke(option.effect);
+        Debug.Log("Broadcasting Dialogue option chosen: " + option.effect);
+        
         if(option.effect == DialogueOptionEffect.EndDialogue)
         {
             EndDialogue();
@@ -142,20 +147,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         dialogueText.text = "";
-
-        if (option.customer != null)
-        {
-            var reciever = option.customer as IDialogueOptionReciever;
-            if (reciever != null)
-            {
-                Debug.Log("Sending " + option.optionText);
-                reciever.OnDialogueOptionChosen(option);
-            }
-            else
-            {
-                Debug.LogWarning("Character " + option.customer.name + " does not implement IDialogueOptionReciever");
-            }
-        }
 
         // Branching logic: if nextSentenceId is set, jump to that sentence
         if (option.nextSentenceId != -1 && currentDialogue != null)

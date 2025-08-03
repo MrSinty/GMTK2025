@@ -9,6 +9,7 @@ public class FridgeUIManager : MonoBehaviour
 
     private void OnEnable()
     {
+        fridgeUIRoot.SetActive(false);
         PopulateFridge();
     }
 
@@ -31,5 +32,10 @@ public class FridgeUIManager : MonoBehaviour
     public void CloseUI()
     {
         fridgeUIRoot.SetActive(false);
+    }
+
+    public void OpenUI()
+    {
+        fridgeUIRoot.SetActive(true);
     }
 }
