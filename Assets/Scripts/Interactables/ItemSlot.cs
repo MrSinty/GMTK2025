@@ -27,15 +27,27 @@ public class ItemSlot : MonoBehaviour
     
     public void Set(ProductData Item)
     {
+        GameObject[] Tables = GameObject.FindGameObjectsWithTag("Table");
         _product = Item;
         if (!_product)
         {
             GetComponent<SpriteRenderer>().sprite = null;
+            foreach (GameObject table in Tables)
+            {
+                
+                if (table.GetComponent<Table>()._productData != null)
+                    table.GetComponent<Table>().IsInteractable = false;
+                table.GetComponent<Table>().IsInteractable = true;
+            }
             return;
         }
         Vector3 pos = transform.position;
         pos.y = GameObject.FindGameObjectWithTag("Player").transform.position.y;
         GetComponent<SpriteRenderer>().sprite = Item.GetSpriteForState(Item.currentState);
+        foreach (GameObject table in Tables)
+        {
+            table.GetComponent<Table>().IsInteractable = true;
+        }
     }
 
     public int GetProductID()
@@ -51,5 +63,10 @@ public class ItemSlot : MonoBehaviour
     public void Upgrade()
     {
 
+    }
+
+    public ProductData Get()
+    {
+        return _product;
     }
 }
