@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
     private InputAction pauseAction;
     public static bool isPaused = false;
     [SerializeField] GameObject pauseMenuObject;
+    
 
     private void Awake()
     {

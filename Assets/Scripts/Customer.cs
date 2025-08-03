@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Customer : MonoBehaviour, IInteractable
+public class Customer : Interactable, IDialogueOptionReciever
 {
     [Header("Movement Settings")]
     public Transform[] waypoints; // Waypoints to walk through
@@ -207,7 +207,7 @@ public class Customer : MonoBehaviour, IInteractable
     }
     
     // IInteractable implementation - this is the main interaction method
-    public void Interact()
+    public override void Interact()
     {
         if (!IsInteractable) return;
         

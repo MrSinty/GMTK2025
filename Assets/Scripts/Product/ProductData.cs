@@ -8,7 +8,8 @@ public class ProductData : ScriptableObject
     public string productName;
     public IngredientCategory category;
     public bool AlreadyCooked;
-
+    public IngredientState currentState = IngredientState.Raw;
+    
     [Header("Sprites for states")]
     public Sprite rawIcon;
     public Sprite cookedIcon;
@@ -19,8 +20,8 @@ public class ProductData : ScriptableObject
         return state switch
         {
             IngredientState.Raw => rawIcon,
-            IngredientState.Cooked => cookedIcon,
             IngredientState.Sliced => slicedIcon,
+            IngredientState.Cooked => cookedIcon,
             _ => rawIcon
         };
     }

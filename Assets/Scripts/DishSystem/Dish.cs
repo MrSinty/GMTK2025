@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dish : MonoBehaviour
+public class Dish : PickUp
 {
     public SpriteRenderer baseSprite;
     public SpriteRenderer mainSprite;
