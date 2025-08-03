@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9c3218b1b766441acd82eaee85fe20, type: 3}
-  m_Name: Recipe1
+  m_Name: RecipeForGreen
   m_EditorClassIdentifier: 
-  dishID: 111
-  dishName: Penis bolshoi
+  dishID: 112
+  dishName: aaaaaaa
   description: AAAsdpokfdsjfas'kojas
-  quality: 3
+  quality: 0
   dishSprite: {fileID: 1111982159, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
-  baseSprite: {fileID: 1115399267, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
+  baseSprite: {fileID: 967679067, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   mainSprite: {fileID: -2106111602, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
-  sauceSprite: {fileID: 112951884, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
+  sauceSprite: {fileID: -1330839423, guid: 8e0a2b0fdda85e841abfba233071f2e8, type: 3}
   isUnlocked: 1
