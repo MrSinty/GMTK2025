@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
+public class Customer : MonoBehaviour, IInteractable
 {
     [Header("Movement Settings")]
     public Transform[] waypoints; // Waypoints to walk through
@@ -211,6 +211,7 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     {
         if (!IsInteractable) return;
         
+
         playerHeldItem = GetPlayerHeldItem();
         
         if (currentState == CustomerState.Seated)
@@ -249,6 +250,8 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
     protected virtual void ValidateAndRespondToItem(int itemId)
     {
         DialogueManager.instance.onDialogueEnded.AddListener(OnDialogueEnded);
+        DialogueManager.instance.onDialogueOptionChosen.AddListener(OnDialogueOptionChosen);
+        
         if (itemId == perfectDishId)
         {
             isPerfectDish = true; // Mark this as a perfect dish
@@ -405,22 +408,19 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         float journeyLength = Vector3.Distance(startPos, targetPos);
         float startTime = Time.time;
         
+        Vector3 motionVector = (targetPos - startPos).normalized;
         while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
             float distCovered = (Time.time - startTime) * lerpSpeed;
             float fractionOfJourney = distCovered / journeyLength;
             
-            Vector3 previousPos = transform.position;
             transform.position = Vector3.Lerp(startPos, targetPos, fractionOfJourney);
-            
-            // Calculate motion vector
-            Vector3 motionVector = (transform.position - previousPos).normalized;
             
             // Update animation if available
             if (animator != null)
             {
                 animator.SetBool("IsWalking", true);
-                animator.SetFloat("horizontal", -motionVector.x); // Invert horizontal to fix flipped animations
+                animator.SetFloat("horizontal", motionVector.x); // Invert horizontal to fix flipped animations
                 animator.SetFloat("vertical", motionVector.y);
             }
             
@@ -474,12 +474,10 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
         IsInteractable = false; // Reset interactable state
     }
 
-    public void OnDialogueOptionChosen(DialogueOption option)
+    public void OnDialogueOptionChosen(DialogueOptionEffect optionEffect)
     {
-        Debug.Log("Player chose option: " + option.optionText);
-        
-        // Handle different dialogue effects
-        switch (option.effect)
+        Debug.Log("Player chose option: " + optionEffect);
+        switch (optionEffect)
         {
             case DialogueOptionEffect.GiveAHint:
                 Debug.Log("Player asked for a hint");
@@ -487,12 +485,13 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                 break;
             case DialogueOptionEffect.ServeDish:
                 Debug.Log("Player served a dish");
-                ValidateAndRespondToItem(option.customer.perfectDishId);
+                RespondToDish(playerHeldItem);
                 break;
             default:
                 Debug.Log("No specific effect for this option");
                 break;
         }
+        DialogueManager.instance.onDialogueOptionChosen.RemoveListener(OnDialogueOptionChosen);
     }
 
     protected void OnInitialOrderDialogueEnded()
@@ -522,10 +521,12 @@ public class Customer : MonoBehaviour, IDialogueOptionReciever, IInteractable
                     onFamilyRecipeShared?.Invoke(perfectDishId);
                 }
                 onCustomerSatisfied?.Invoke();
+                Debug.Log("Customer satisfied!");
                 LeaveCafe(CustomerState.Satisfied);
                 break;
             case CustomerState.Enraged:
                 onCustomerEnraged?.Invoke();
+                Debug.Log("Customer enraged! and leaving");
                 LeaveCafe(CustomerState.Enraged);
                 break;
             default:

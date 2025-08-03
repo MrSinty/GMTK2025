@@ -680,7 +680,7 @@ MonoBehaviour:
     sentences:
     - id: 0
       sentence: Are you ready to become more than just a cook today? No? Pity.Another
-        morning, another attempt. Same mistake. Will you try again?
+        morning, another attempt. Same mistakes. Will you try again?
       options: []
       nextSentenceId: 1
     - id: 1
@@ -688,12 +688,10 @@ MonoBehaviour:
         Time is slipping, and you still don\u2019t know what feeds eternity."
       options:
       - optionText: Can you push me in the right direction?
-        effect: 0
-        customer: {fileID: 0}
+        effect: 1
         nextSentenceId: 2
       - optionText: Will do, good sir! I'll be right with you.
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: -1
       nextSentenceId: 2
     - id: 2
@@ -724,11 +722,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 1128782409911627115}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -755,11 +751,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 1128782409911627115}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 1
     - id: 1
@@ -810,11 +804,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 1128782409911627115}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -836,11 +828,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 1128782409911627115}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -863,11 +853,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 1128782409911627115}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1

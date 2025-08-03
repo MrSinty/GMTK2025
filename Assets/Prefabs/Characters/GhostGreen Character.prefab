@@ -687,11 +687,9 @@ MonoBehaviour:
       options:
       - optionText: Hint
         effect: 1
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 2
       - optionText: Sure
         effect: 0
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: -1
       nextSentenceId: -1
     - id: 2
@@ -721,11 +719,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -746,36 +742,18 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
       sentence: "Meh. I\u2019d give it a three outta five."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   perfectDishDialogue:
@@ -787,11 +765,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: 0
     - id: 1
@@ -803,15 +779,7 @@ MonoBehaviour:
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 0
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   familyDishDialogue:
@@ -823,11 +791,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -835,27 +801,11 @@ MonoBehaviour:
         the one! Just like that evening in the kitchen. Me and dad ate in silence,
         even the cat didn\u2019t meow. Then he said: \u201CThis is what real food
         tastes like.\u201D Dude... you hit a memory."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: For real? Then get back to that kitchen before I fall asleep here!
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: 1923496800, guid: 75bf42ee150f6aa439d20c14826f6163, type: 3}
   onFamilyRecipeShared:

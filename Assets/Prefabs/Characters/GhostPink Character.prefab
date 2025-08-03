@@ -655,11 +655,9 @@ MonoBehaviour:
       options:
       - optionText: Hint
         effect: 1
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 2
       - optionText: Sure
         effect: 0
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: -1
       nextSentenceId: -1
     - id: 2
@@ -689,11 +687,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -714,11 +710,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
@@ -726,11 +720,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: -1
     - id: 2
@@ -738,11 +730,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: -1
     customerImage: {fileID: -1024042798, guid: 0e681074509bd1b4ba83fb9cc6b9ab9c, type: 3}
@@ -755,11 +745,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: 0
     - id: 1
@@ -773,11 +761,9 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 0
       nextSentenceId: -1
     customerImage: {fileID: -1024042798, guid: 0e681074509bd1b4ba83fb9cc6b9ab9c, type: 3}
@@ -790,38 +776,20 @@ MonoBehaviour:
       options:
       - optionText: Yes
         effect: 3
-        customer: {fileID: 8725488701243048386}
         nextSentenceId: 1
       - optionText: No
         effect: 0
-        customer: {fileID: 0}
         nextSentenceId: 2
       nextSentenceId: 0
     - id: 1
       sentence: "But... that's impossible. That's the dish... How did you know? You...
         saw it? Grandma\u2019s kitchen? I haven\u2019t felt this in ages\u2026 even
         in life."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     - id: 2
       sentence: "Ah\u2026 then go, my hero. Let the frying pan sing you a sonata."
-      options:
-      - optionText: Yes
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 1
-      - optionText: No
-        effect: 0
-        customer: {fileID: 0}
-        nextSentenceId: 2
+      options: []
       nextSentenceId: -1
     customerImage: {fileID: -1024042798, guid: 0e681074509bd1b4ba83fb9cc6b9ab9c, type: 3}
   onFamilyRecipeShared:

@@ -16,7 +16,6 @@ public class DialogueOption
     public string optionText;
 
     public DialogueOptionEffect effect;
-    public Customer customer;
 
     public int nextSentenceId;
 }
